@@ -24,9 +24,32 @@
 	<body>
 
 		<div id="app">
-			<div class="dice dice-1">Roll 1</div>
-			<div class="dice dice-2">Roll 2</div>
-			<div class="dice dice-3">Roll 3</div>
+			<p class="intro">Roll how many dice?</p>
+			<div class="d-flex">
+				<div v-on:click="rollX(1)" class="dice dice-1 flex-50">1</div>
+				<div v-on:click="rollX(2)" class="dice dice-2 flex-50">2</div>
+				<div v-on:click="rollX(3)" class="dice dice-3 flex-50">3</div>
+				<div v-on:click="rollX(4)" class="dice dice-3 flex-50">4</div>
+				<div v-on:click="rollX(5)" class="dice dice-3 flex-50">5</div>
+				<div v-on:click="rollX(6)" class="dice dice-3 flex-50">6</div>
+			</div>
+			<div v-if="roll.length > 0" v-on:click="clearRoll()" class="dice-display">
+				<div class="dice-container d-flex flex-center">
+					<div v-for="dice in roll" class="dice-wrapper flex-50 flex-center">
+						<div class="dice-result" v-bind:data-value="dice">
+							{{ dice }}
+						</div>
+					</div>
+					<p class="dice-max flex-100">Highest: <span>{{Math.max(...roll)}}</span></p>
+				</div>
+			</div>
+			<div id="log" class="log-wrapper">
+				<div id="log-inner" class="log-inner-wrapper">
+					<p v-for="entry in log" class="log-entry">
+						{{entry}}
+					</p>
+				</div>
+			</div>
 		</div>
 
 		<script src="js/vendor/modernizr-3.11.7.min.js"></script>
