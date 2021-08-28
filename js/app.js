@@ -36,7 +36,7 @@ var app = new Vue({
 			}
 			this.rollResult(result);
 
-			if (value = 1) {
+			if (value < 2) {
 				audioOne.play();
 			} else if (value > 1 && value <= 3 ) {
 				audioTwo.play();
