@@ -28,7 +28,7 @@
 			<div class="d-flex">
 				<div v-on:click="rollX(1)" class="dice dice-1 flex-50">
 					<span class="dice-number">1</span>
-					<span class="dice-description">OK</span>
+					<span class="dice-description">Mediocre</span>
 				</div>
 				<div v-on:click="rollX(2)" class="dice dice-2 flex-50">
 					<span class="dice-number">2</span>
@@ -48,7 +48,7 @@
 			</div>
 			<div v-if="roll.length > 0" v-on:click="clearRoll()" class="dice-display">
 				<div class="dice-container d-flex flex-center">
-					<div v-for="dice in roll" class="dice-wrapper flex-50 flex-center">
+					<div v-for="dice in roll" class="dice-wrapper flex-50 flex-center" v-bind:data-value="dice">
 						<div class="dice-result" v-bind:data-value="dice">
 							{{ dice }}
 						</div>
@@ -68,7 +68,7 @@
 			<div id="log" class="log-wrapper">
 				<div id="log-inner" class="log-inner-wrapper">
 					<p v-for="entry in log" class="log-entry">
-						{{entry}} = {{rollTotal}}
+						{{entry}} = {{rollSum(entry)}}
 					</p>
 				</div>
 			</div>
