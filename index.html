@@ -2,8 +2,8 @@
 <html class="no-js" lang="">
 	<head>
 		<meta charset="utf-8">
-		<title></title>
-		<meta name="description" content="">
+		<title>Hero Dice</title>
+		<meta name="description" content="Dice rolling for heroic adventures">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<meta property="og:title" content="">
@@ -42,6 +42,9 @@
 					<span class="dice-number">4</span>
 					<span class="dice-description">Superhuman!</span>
 				</div>
+				<div v-on:click="multiDice = true" class="dice dice-multi flex-100">
+					<span class="dice-description">Other<br/>Amounts</span>
+				</div>
 			</div>
 			<div v-if="roll.length > 0" v-on:click="clearRoll()" class="dice-display">
 				<div class="dice-container d-flex flex-center">
@@ -53,6 +56,13 @@
 					<p class="dice-max flex-100">Highest: <span>{{Math.max(...roll)}}</span></p>
 					<p class="dice-max dice-max-total flex-100">Total: <span>{{rollTotal}}</span></p>
 
+				</div>
+			</div>
+			<div v-if="multiDice" class="dice-display">
+				<div class="dice-container d-flex flex-center flex-column">
+					<p class="dice-max">Enter number of dice:</p>
+					<input v-model="diceNumber" id="dice-number" type="number" class="dice-input">
+					<button v-on:click="rollMulti" class="dice-trigger">Roll</button>
 				</div>
 			</div>
 			<div id="log" class="log-wrapper">

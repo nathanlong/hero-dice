@@ -15,8 +15,10 @@ var audioMulti = new Audio('./mp3/dice-multi.mp3');
 var app = new Vue({
 	el: '#app',
 	data: {
-		roll: [],
+		diceNumber: 0,
 		log: [],
+		multiDice: false,
+		roll: [],
 		rollTotal: 0,
 	},
 	computed: {
@@ -42,6 +44,10 @@ var app = new Vue({
 				audioMulti.play();
 			}
 			// console.log(dice, result);
+		},
+		rollMulti: function() {
+			this.multiDice = false;
+			this.rollX(this.diceNumber);
 		},
 		rollResult: function(result) {
 			this.roll = result;
