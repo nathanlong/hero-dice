@@ -26,12 +26,22 @@
 		<div id="app">
 			<p class="intro">Roll how many dice?</p>
 			<div class="d-flex">
-				<div v-on:click="rollX(1)" class="dice dice-1 flex-50">1</div>
-				<div v-on:click="rollX(2)" class="dice dice-2 flex-50">2</div>
-				<div v-on:click="rollX(3)" class="dice dice-3 flex-50">3</div>
-				<div v-on:click="rollX(4)" class="dice dice-3 flex-50">4</div>
-				<div v-on:click="rollX(5)" class="dice dice-3 flex-50">5</div>
-				<div v-on:click="rollX(6)" class="dice dice-3 flex-50">6</div>
+				<div v-on:click="rollX(1)" class="dice dice-1 flex-50">
+					<span class="dice-number">1</span>
+					<span class="dice-description">OK</span>
+				</div>
+				<div v-on:click="rollX(2)" class="dice dice-2 flex-50">
+					<span class="dice-number">2</span>
+					<span class="dice-description">Good</span>
+				</div>
+				<div v-on:click="rollX(3)" class="dice dice-3 flex-50">
+					<span class="dice-number">3</span>
+					<span class="dice-description">Excellent!</span>
+				</div>
+				<div v-on:click="rollX(4)" class="dice dice-3 flex-50">
+					<span class="dice-number">4</span>
+					<span class="dice-description">Superhuman!</span>
+				</div>
 			</div>
 			<div v-if="roll.length > 0" v-on:click="clearRoll()" class="dice-display">
 				<div class="dice-container d-flex flex-center">
@@ -41,12 +51,14 @@
 						</div>
 					</div>
 					<p class="dice-max flex-100">Highest: <span>{{Math.max(...roll)}}</span></p>
+					<p class="dice-max dice-max-total flex-100">Total: <span>{{rollTotal}}</span></p>
+
 				</div>
 			</div>
 			<div id="log" class="log-wrapper">
 				<div id="log-inner" class="log-inner-wrapper">
 					<p v-for="entry in log" class="log-entry">
-						{{entry}}
+						{{entry}} = {{rollTotal}}
 					</p>
 				</div>
 			</div>

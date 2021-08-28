@@ -117,7 +117,25 @@ textarea {
 .dice {
   text-align: center;
 	padding: 2rem;
-	border: 1px solid pink;
+	transition: box-shadow 75ms ease-out;
+	box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
+}
+
+.dice:active {
+	box-shadow: inset 5px 5px 8px 0 rgba(0,0,0,0.2);
+	background-color: rgba(0,0,0,0.03);
+}
+
+.dice-number {
+  display: block;
+	font-weight: bold;
+	font-size: 2rem;
+} 
+
+.dice-description {
+  text-transform: uppercase;
+	font-size: 0.75rem;
+	color: gray;
 }
 
 .dice-display {
@@ -132,7 +150,7 @@ textarea {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(0,0,0,.7);
+	background-color: rgba(0,0,0,.8);
 	z-index: 1;
 }
 
@@ -164,6 +182,7 @@ textarea {
 
 .dice-max {
   text-align: center;
+	margin: 0.5rem 0;
 	color: #ffffff;
 	font-size: 1.25rem;
 	vertical-align: middle;
@@ -172,6 +191,10 @@ textarea {
 .dice-max span {
   font-weight: bold;
 	font-size: 2rem;
+}
+
+.dice-max-total {
+  margin-top: 0;
 }
 
 .flex-center {
@@ -192,7 +215,7 @@ textarea {
 }
 
 .log-inner-wrapper {
-	padding: 1rem;
+	padding: 0.5rem;
 }
 
 .log-entry {

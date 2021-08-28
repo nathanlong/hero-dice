@@ -17,6 +17,7 @@ var app = new Vue({
 	data: {
 		roll: [],
 		log: [],
+		rollTotal: 0,
 	},
 	computed: {
 	},
@@ -44,8 +45,14 @@ var app = new Vue({
 		},
 		rollResult: function(result) {
 			this.roll = result;
+			this.rollTotal = this.rollSum(result);
 			this.log.push(result);
-			setTimeout(this.scrollLog(), 500);
+		},
+		rollSum: function(value) {
+			var sum = value.reduce(function(a,b){
+				return a + b;
+			}, 0);
+			return sum;
 		},
 		scrollLog: function() {
 			var element = document.getElementById("log");
@@ -54,6 +61,7 @@ var app = new Vue({
 		},
 		clearRoll: function() {
 			this.roll = [];
+			this.scrollLog();
 		}
 	},
 })
