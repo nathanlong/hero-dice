@@ -9,6 +9,10 @@ Vue.component('todo-item', {
 var audioOne = new Audio('./mp3/dice-one.mp3');
 var audioTwo = new Audio('./mp3/dice-two.mp3');
 var audioMulti = new Audio('./mp3/dice-multi.mp3');
+var successGlimmer = new Audio('./mp3/success-glimmer.mp3');
+var successWow = new Audio('./mp3/success-wow.mp3');
+var failDown = new Audio('./mp3/fail-down.mp3');
+var failHooya = new Audio('./mp3/fail-hooyah.mp3');
 
 // VUE APP
 // -----------------------------------------------------------------------------
@@ -53,6 +57,25 @@ var app = new Vue({
 			this.roll = result;
 			this.rollTotal = this.rollSum(result);
 			this.log.push(result);
+
+			var max = Math.max(...result);
+			if (max === 6) {
+				setTimeout(function(){
+					successWow.play()
+				}, 500);
+			} else if (max === 5) {
+				setTimeout(function(){
+					successGlimmer.play()
+				}, 500);
+			} else if (max === 2) {
+				setTimeout(function(){
+					failDown.play()
+				}, 500);
+			} else if (max === 1) {
+				setTimeout(function(){
+					failHooya.play()
+				}, 500);
+			}
 		},
 		rollSum: function(value) {
 			var sum = value.reduce(function(a,b){
