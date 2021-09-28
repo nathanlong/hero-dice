@@ -111,8 +111,17 @@ textarea {
 }
 
 .intro {
-  text-align: center;
+	padding: 1rem 0;
+	position: relative;
 }
+
+.intro-text {
+	display: block;
+	width: 100%;
+	text-align: center;
+}
+
+
 
 .dice {
   text-align: center;
@@ -172,7 +181,8 @@ textarea {
 
 .dice-result[data-value="1"] {
 	color: #d9143e;
-	animation: shake 200ms 2 linear;
+	animation: shake 200ms 2 linear, absorb 1500ms infinite ease-in-out;
+	box-shadow: 0 0 20px rgba(0,0,0,1);
 }
 
 .dice-wrapper[data-value="1"]:nth-of-type(2n+1) .dice-result { animation-delay: 50ms; }
@@ -192,6 +202,12 @@ textarea {
   33.33% { box-shadow: 0 0 20px #f2ee6d; transform: translate(0, 2px); }
   66.66% { box-shadow: 0 0 20px #f2ee6d; transform: translate(0, -2px); }
   100% { box-shadow: 0 0 -10px #f2ee6d; transform: translate (0, 0); }
+}
+
+@keyframes absorb {
+	0% { box-shadow: 0 0 20px rgba(0,0,0,1); }
+	50% { box-shadow: 0 0 40px rgba(0,0,0,1); }
+	100% { box-shadow: 0 0 20px rgba(0,0,0,1); }
 }
 
 @keyframes shake {
@@ -261,6 +277,59 @@ textarea {
 
 .log-entry {
 	margin: 0;
+}
+
+.options {
+  position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(255,255,255,.9);
+}
+
+.options-toggle {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 50px;
+	height: 50px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	border: 0;
+	background-color: transparent;
+}
+
+.options-toggle-bar {
+  width: 15px;
+	height: 2px;
+	background-color: rgba(90,90,90,1);
+	margin: 1.5px 0;
+}
+
+.options-toggle-close .options-toggle-bar {
+  position: absolute;
+	top: 50%;
+	left: 50%;
+}
+
+.options-toggle-close .options-toggle-bar:nth-of-type(1) {
+	transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.options-toggle-close .options-toggle-bar:nth-of-type(2) {
+	transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.slide-enter-active, .slide-leave-active {
+	transition: transform .5s cubic-bezier(0.39, 0.575, 0.565, 1);
+	transform: translateX(0)
+}
+
+.slide-enter, .slide-leave-to /* .fade-leave-active below version 2.1.8 */ {
+	transform: translateX(100%);
 }
 
 /* ==========================================================================
