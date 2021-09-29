@@ -113,6 +113,10 @@ textarea {
 .intro {
 	padding: 1rem 0;
 	position: relative;
+	height: 55px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .intro-text {
@@ -124,10 +128,13 @@ textarea {
 
 
 .dice {
+	border: 0;
+	background: rgba(255,255,255,1);
   text-align: center;
 	padding: 2rem;
 	transition: box-shadow 75ms ease-out;
 	box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
+	height: calc(25vh - 13.5px);
 }
 
 .dice:active {
@@ -199,15 +206,15 @@ textarea {
 
 @keyframes glowing {
   0% { box-shadow: 0 0 -10px #f2ee6d; transform: translate(0,0px); }
-  33.33% { box-shadow: 0 0 20px #f2ee6d; transform: translate(0, 2px); }
-  66.66% { box-shadow: 0 0 20px #f2ee6d; transform: translate(0, -2px); }
+  33.33% { box-shadow: 0 0 30px #f2ee6d; transform: translate(0, 2px); }
+  66.66% { box-shadow: 0 0 30px #f2ee6d; transform: translate(0, -2px); }
   100% { box-shadow: 0 0 -10px #f2ee6d; transform: translate (0, 0); }
 }
 
 @keyframes absorb {
-	0% { box-shadow: 0 0 20px rgba(0,0,0,1); }
-	50% { box-shadow: 0 0 40px rgba(0,0,0,1); }
-	100% { box-shadow: 0 0 20px rgba(0,0,0,1); }
+	0% { box-shadow: 0 0 20px 3px rgba(0,0,0,1); }
+	50% { box-shadow: 0 0 30px 10px rgba(0,0,0,1); }
+	100% { box-shadow: 0 0 20px 3px rgba(0,0,0,1); }
 }
 
 @keyframes shake {
@@ -266,9 +273,9 @@ textarea {
 	left: 0;
 	right: 0;
 	border-top: 1px solid gray;
-	background-color: rgba(0,0,0,0.1);
+	background-color: rgba(0,0,0,0.05);
 	overflow-y: scroll;
-	height: 5rem;
+	height: calc(25vh - 13.5px);
 }
 
 .log-inner-wrapper {
@@ -277,6 +284,8 @@ textarea {
 
 .log-entry {
 	margin: 0;
+	font-family: monospace;
+	font-size: 0.75rem;
 }
 
 .options {
@@ -286,6 +295,7 @@ textarea {
 	width: 100%;
 	height: 100%;
 	background-color: rgba(255,255,255,.9);
+	padding: 1rem;
 }
 
 .options-toggle {
@@ -323,6 +333,12 @@ textarea {
 	transform: translate(-50%, -50%) rotate(-45deg);
 }
 
+.options-toggle-close-light .options-toggle-bar {
+  background-color: rgba(255,255,255,1);
+}
+
+/* transition slide */
+
 .slide-enter-active, .slide-leave-active {
 	transition: transform .5s cubic-bezier(0.39, 0.575, 0.565, 1);
 	transform: translateX(0)
@@ -332,6 +348,15 @@ textarea {
 	transform: translateX(100%);
 }
 
+/* transition fade */
+
+.fade-enter-active, .fade-leave-active {
+	transition: opacity 150ms ease-out;
+}
+
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+	opacity: 0;
+}
 /* ==========================================================================
    Helper classes
    ========================================================================== */

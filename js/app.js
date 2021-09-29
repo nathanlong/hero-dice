@@ -28,6 +28,7 @@ var app = new Vue({
 		multiDice: false,
 		roll: [],
 		rollTotal: 0,
+		prefDice: true,
 		prefSound: true,
 		screenOptions: false,
 	},
@@ -45,8 +46,8 @@ var app = new Vue({
 			}
 			this.rollResult(result);
 
-			// roll them bones
-			if (this.prefSound === true ) {
+			// play dem bone sounds
+			if (this.prefDice === true ) {
 				if (value < 2) {
 					audioOne.play();
 				} else if (value > 1 && value <= 3 ) {
