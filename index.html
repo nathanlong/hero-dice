@@ -32,7 +32,7 @@
 					<span class="options-toggle-bar"></span>
 				</button>
 			</div>
-			<div class="d-flex">
+			<div v-bind:class="[prefDiceAmount]" class="d-flex">
 				<button v-on:click="rollX(1)" class="dice dice-1 flex-50">
 					<span class="dice-number">1</span>
 					<span class="dice-description">Mediocre</span>
@@ -45,8 +45,16 @@
 					<span class="dice-number">3</span>
 					<span class="dice-description">Excellent!</span>
 				</button>
-				<button v-on:click="rollX(4)" class="dice dice-3 flex-50">
+				<button v-on:click="rollX(4)" class="dice dice-4 flex-50">
 					<span class="dice-number">4</span>
+					<span class="dice-description">Superhuman!</span>
+				</button>
+				<button v-if="prefDiceAmount === 'dice-6'" v-on:click="rollX(5)" class="dice dice-5 flex-50">
+					<span class="dice-number">5</span>
+					<span class="dice-description">Superhuman!</span>
+				</button>
+				<button v-if="prefDiceAmount === 'dice-6'" v-on:click="rollX(6)" class="dice dice-6 flex-50">
+					<span class="dice-number">6</span>
 					<span class="dice-description">Superhuman!</span>
 				</button>
 				<button v-on:click="multiDice = true" class="dice dice-multi flex-100">
@@ -65,8 +73,8 @@
 							{{ dice }}
 						</div>
 					</div>
-					<p class="dice-max flex-100">Highest: <span>{{Math.max(...roll)}}</span></p>
-					<p class="dice-max dice-max-total flex-100">Total: <span>{{rollTotal}}</span></p>
+					<p v-if="prefDiceCount === 'highest'" class="dice-max flex-100">Highest: <span>{{Math.max(...roll)}}</span></p>
+					<p v-if="prefDiceCount === 'total'" class="dice-max dice-max-total flex-100">Total: <span>{{rollTotal}}</span></p>
 
 				</div>
 			</div>
@@ -85,6 +93,9 @@
 					<span class="options-toggle-bar"></span>
 				</button>
 
+				<h2>Hero Dice</h2>
+				<p>A super-simple dice roller designed for <strong>Tiny Epic Heroes</strong> that coincidentally works for several systems.</p>
+
 				<h2>Options</h2>
 
 				<div class="form-set">
@@ -94,11 +105,29 @@
 
 				<div class="form-set">
 					<input type="checkbox" id="preference-sound" v-model="prefSound">
-					<label for="preference-sound">Play Result Sounds?</label>
+					<label for="preference-sound">Play Result Sounds? (Requires Highest Rolled method)</label>
+				</div>
+
+				<div class="form-set">
+					<label for="preference-dice-number">Visible Dice Pools</label>
+					<select id="preference-dice-number" name="preference-number" class="options-select" v-model="prefDiceAmount">
+						<option disabled value="">Please select one</option>
+						<option value="dice-4">4 dice pools</option>
+						<option value="dice-6">6 dice pools</option>
+					</select>
+				</div>
+
+				<div class="form-set">
+					<label for="preference-dice-number">Choose counting method:</label>
+					<select id="preference-dice-number" name="preference-number" class="options-select" v-model="prefDiceCount">
+						<option disabled value="">Please select one</option>
+						<option value="highest">Highest Rolled</option>
+						<option value="total">Dice Total</option>
+					</select>
 				</div>
 			</div>
 			</transition>
-			<div id="log" class="log-wrapper">
+			<div id="log" v-bind:class="[prefDiceAmount]" class="log-wrapper">
 				<div id="log-inner" class="log-inner-wrapper">
 					<p class="log-entry"><strong>Results:</strong></p>
 					<p v-for="entry in log" class="log-entry">

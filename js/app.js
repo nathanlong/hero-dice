@@ -30,6 +30,8 @@ var app = new Vue({
 		rollTotal: 0,
 		prefDice: true,
 		prefSound: true,
+		prefDiceCount: "highest",
+		prefDiceAmount: "dice-4",
 		screenOptions: false,
 	},
 	computed: {

@@ -137,6 +137,14 @@ textarea {
 	height: calc(25vh - 13.5px);
 }
 
+.dice-4 .dice {
+	height: calc(25vh - 13.5px);
+}
+
+.dice-6 .dice {
+	height: calc(20vh - 11px);
+}
+
 .dice:active {
 	box-shadow: inset 5px 5px 8px 0 rgba(0,0,0,0.2);
 	background-color: rgba(0,0,0,0.03);
@@ -187,7 +195,8 @@ textarea {
 }
 
 .dice-result[data-value="1"] {
-	color: #d9143e;
+	color: #ffffff;
+	background-color: #d9143e;
 	animation: shake 200ms 2 linear, absorb 1500ms infinite ease-in-out;
 	box-shadow: 0 0 20px rgba(0,0,0,1);
 }
@@ -278,6 +287,14 @@ textarea {
 	height: calc(25vh - 13.5px);
 }
 
+.log-wrapper.dice-4 {
+	height: calc(25vh - 13.5px);
+}
+
+.log-wrapper.dice-6 {
+	height: calc(20vh - 11px);
+}
+
 .log-inner-wrapper {
 	padding: 0.5rem;
 }
@@ -296,6 +313,7 @@ textarea {
 	height: 100%;
 	background-color: rgba(255,255,255,.9);
 	padding: 1rem;
+	z-index: 1;
 }
 
 .options-toggle {
@@ -335,6 +353,14 @@ textarea {
 
 .options-toggle-close-light .options-toggle-bar {
   background-color: rgba(255,255,255,1);
+}
+
+.form-set	{
+  margin: 1rem 0;
+}
+
+.options-select {
+  display: block;
 }
 
 /* transition slide */
