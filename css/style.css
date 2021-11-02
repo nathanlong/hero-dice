@@ -155,12 +155,12 @@ textarea {
 }
 
 .dice-control.active {
-  background-color: var(--color-on);
-	color: #fff;
+  /* background-color: var(--color-on); */
+	/* color: #fff; */
 }
 
 .dice-control.active:active {
-  background-color: var(--color-on-active);
+  /* background-color: var(--color-on-active); */
 }
 
 .dice-4 .dice {
@@ -195,7 +195,26 @@ textarea {
 }
 
 .active .dice-description {
-  color: #fff;
+  color: var(--color-cyan-2);
+	font-weight: bold;
+}
+
+.dice-icon {
+  display: block;
+	margin-bottom: 0.5rem;
+}
+
+.dice-icon-el {
+  fill: rgba(0,0,0,0.2);
+}
+
+.active .dice-icon-el {
+  fill: var(--color-cyan-2);
+}
+
+.dice-icon-el {
+  width: 8vw;
+	max-width: 80px;
 }
 
 .dice-display {

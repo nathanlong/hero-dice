@@ -58,13 +58,19 @@
 					<span class="dice-description">Superhuman!</span>
 				</button>
 				<button v-on:click="prefDiceCount = 'lowest'" class="dice dice-control dice-low flex-25" v-bind:class="{active: diceLowest}">
-					<span class="dice-description">Count<br/>Lowest</span>
+					<span class="dice-icon">
+						<svg class="dice-icon-el" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve"><path d="M21.019 26.213a.997.997 0 0 0-.707.293l-2.83 2.83-2.793-2.793a.999.999 0 1 0-1.414 1.414l3.5 3.5a.999.999 0 0 0 1.414 0l3.537-3.537a.999.999 0 0 0-.707-1.707zM17.5 12.431a1.819 1.819 0 1 0 0 3.638 1.819 1.819 0 0 0 0-3.638zm8-9.181h-16a3 3 0 0 0-3 3v16a3 3 0 0 0 3 3h16a3 3 0 0 0 3-3v-16a3 3 0 0 0-3-3zm1 19c0 .551-.449 1-1 1h-16c-.551 0-1-.449-1-1v-16c0-.551.449-1 1-1h16c.551 0 1 .449 1 1v16z"/></svg>
+					</span>
+					<span class="dice-description">Lowest</span>
 				</button>
 				<button v-on:click="multiDice = true" class="dice dice-multi flex-50">
 					<span class="dice-number">Other</span>
 				</button>
 				<button v-on:click="prefDiceCount = 'highest'" class="dice dice-control dice-high flex-25" v-bind:class="{active: diceHighest}">
-					<span class="dice-description">Count<br/>Highest</span>
+					<span class="dice-icon">
+						<svg class="dice-icon-el" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve"><path d="M13.401 18.931a1.82 1.82 0 1 0 0 3.638 1.82 1.82 0 0 0 0-3.638zm0-4.81a1.82 1.82 0 1 0 0 3.638 1.82 1.82 0 0 0 0-3.638zm1.287-5.664 2.793-2.793 2.83 2.83a.997.997 0 0 0 1.414 0 .999.999 0 0 0 0-1.414l-3.537-3.537a.999.999 0 0 0-1.414 0l-3.5 3.5a.999.999 0 1 0 1.414 1.414zm-1.287 15.285a1.819 1.819 0 1 0 0 3.638 1.819 1.819 0 0 0 0-3.638zm8.282-9.621a1.82 1.82 0 1 0 0 3.638 1.82 1.82 0 0 0 0-3.638zM25.5 9.75h-16a3 3 0 0 0-3 3v16a3 3 0 0 0 3 3h16a3 3 0 0 0 3-3v-16a3 3 0 0 0-3-3zm1 19c0 .551-.449 1-1 1h-16c-.551 0-1-.449-1-1v-16c0-.551.449-1 1-1h16c.551 0 1 .449 1 1v16zm-4.817-5.008a1.819 1.819 0 1 0 0 3.638 1.819 1.819 0 0 0 0-3.638zm0-4.811a1.82 1.82 0 1 0 0 3.638 1.82 1.82 0 0 0 0-3.638z"/></svg>
+					</span>
+					<span class="dice-description">Highest</span>
 				</button>
 			</div>
 			<transition name="fade" mode="out-in">
