@@ -1,0 +1,23 @@
+{
+  "name": "hero-dice",
+  "version": "0.1.0",
+  "description": "A simple dice roller designed for Tiny Epic Heroes",
+  "main": "/js/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:nathanlong/hero-dice.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nathanlong/hero-dice/issues"
+  },
+  "homepage": "https://hero-dice.netlify.app/",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "live-server": "^1.2.1"
+  }
+}

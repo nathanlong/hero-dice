@@ -9,14 +9,12 @@ Vue.component('todo-item', {
 var audioOne = new Audio('./mp3/dice-one.mp3');
 var audioTwo = new Audio('./mp3/dice-two.mp3');
 var audioMulti = new Audio('./mp3/dice-multi.mp3');
-var successBubble = new Audio('./mp3/success-bubble.mp3')
-var successSparkle = new Audio('./mp3/success-sparkle.mp3')
-var successWow = new Audio('./mp3/success-wow.mp3');
-var successWee = new Audio('./mp3/success-wee.mp3');
-var failDown = new Audio('./mp3/fail-down.mp3');
-var failFart = new Audio('./mp3/fail-fart.mp3');
-var failOh = new Audio('./mp3/fail-oh.mp3');
-var failHooya = new Audio('./mp3/fail-hooyah.mp3');
+var success_6 = new Audio('./mp3/6-success-wow.mp3');
+var success_5 = new Audio('./mp3/5-success-wee.mp3');
+var success_4 = new Audio('./mp3/4-success-sparkle.mp3');
+var fail_3 = new Audio('./mp3/3-drums.mp3');
+var fail_2 = new Audio('./mp3/2-fail-fart.mp3');
+var fail_1 = new Audio('./mp3/1-sad-trombone.mp3');
 
 // VUE APP
 // -----------------------------------------------------------------------------
@@ -35,6 +33,20 @@ var app = new Vue({
 		screenOptions: false,
 	},
 	computed: {
+		diceHighest: function() {
+			if (this.prefDiceCount === "highest") {
+				return true;
+			} else {
+				return false;
+			}
+		},
+		diceLowest: function() {
+			if (this.prefDiceCount === "lowest") {
+				return true;
+			} else {
+				return false;
+			}
+		}
 	},
 	methods: {
 		rollDice: function(min, max) {
@@ -69,33 +81,37 @@ var app = new Vue({
 			this.rollTotal = this.rollSum(result);
 			this.log.push(result);
 
-			var max = Math.max(...result);
+			if (this.prefDiceCount === 'lowest') {
+				var count = Math.min(...result);
+			} else {
+				var count = Math.max(...result);
+			}
 			var sound;
 
-			if (this.prefSound === true ) {
-				switch(max) {
+			if (this.prefSound === true && this.prefDiceCount !== "total" ) {
+				switch(count) {
 					case 6:
-						sound = successWow;
+						sound = success_6;
 						break;
 					case 5:
-						sound = successWee;
+						sound = success_5;
 						break;
 					case 4:
-						sound = successSparkle;
+						sound = success_4;
 						break;
 					case 3:
-						sound = successBubble;
+						sound = fail_3;
 						break;
 					case 2:
-						sound = failFart;
+						sound = fail_2;
 						break;
 					default:
-						sound = failOh;
+						sound = fail_1;
 				}
 
 				setTimeout(function(){
 					sound.play();
-				}, 500)
+				}, 400)
 			}
 		},
 		rollSum: function(value) {

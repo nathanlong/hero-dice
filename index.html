@@ -35,7 +35,7 @@
 			<div v-bind:class="[prefDiceAmount]" class="d-flex">
 				<button v-on:click="rollX(1)" class="dice dice-1 flex-50">
 					<span class="dice-number">1</span>
-					<span class="dice-description">Mediocre</span>
+					<span class="dice-description">OK</span>
 				</button>
 				<button v-on:click="rollX(2)" class="dice dice-2 flex-50">
 					<span class="dice-number">2</span>
@@ -57,8 +57,14 @@
 					<span class="dice-number">6</span>
 					<span class="dice-description">Superhuman!</span>
 				</button>
-				<button v-on:click="multiDice = true" class="dice dice-multi flex-100">
-					<span class="dice-description">Other<br/>Amounts</span>
+				<button v-on:click="prefDiceCount = 'lowest'" class="dice dice-control dice-low flex-25" v-bind:class="{active: diceLowest}">
+					<span class="dice-description">Count<br/>Lowest</span>
+				</button>
+				<button v-on:click="multiDice = true" class="dice dice-multi flex-50">
+					<span class="dice-number">Other</span>
+				</button>
+				<button v-on:click="prefDiceCount = 'highest'" class="dice dice-control dice-high flex-25" v-bind:class="{active: diceHighest}">
+					<span class="dice-description">Count<br/>Highest</span>
 				</button>
 			</div>
 			<transition name="fade" mode="out-in">
@@ -74,18 +80,25 @@
 						</div>
 					</div>
 					<p v-if="prefDiceCount === 'highest'" class="dice-max flex-100">Highest: <span>{{Math.max(...roll)}}</span></p>
+					<p v-if="prefDiceCount === 'lowest'" class="dice-max flex-100">Lowest: <span>{{Math.min(...roll)}}</span></p>
 					<p v-if="prefDiceCount === 'total'" class="dice-max dice-max-total flex-100">Total: <span>{{rollTotal}}</span></p>
 
 				</div>
 			</div>
 			</transition>
+			<transition name="fade" mode="out-in">
 			<div v-if="multiDice" class="dice-display">
+				<button v-on:click="multiDice = false" class="options-toggle options-toggle-close options-toggle-close-light">
+					<span class="options-toggle-bar"></span>
+					<span class="options-toggle-bar"></span>
+				</button>
 				<div class="dice-container d-flex flex-center flex-column">
 					<p class="dice-max">Enter number of dice:</p>
 					<input v-model="diceNumber" id="dice-number" type="number" class="dice-input">
 					<button v-on:click="rollMulti" class="dice-trigger">Roll</button>
 				</div>
 			</div>
+			</transition>
 			<transition name="slide" mode="out-in">
 			<div v-if="screenOptions" class="options">
 				<button v-on:click="screenSwitch()" class="options-toggle options-toggle-close">
@@ -122,6 +135,7 @@
 					<select id="preference-dice-number" name="preference-number" class="options-select" v-model="prefDiceCount">
 						<option disabled value="">Please select one</option>
 						<option value="highest">Highest Rolled</option>
+						<option value="lowest">Lowest Rolled</option>
 						<option value="total">Dice Total</option>
 					</select>
 				</div>
