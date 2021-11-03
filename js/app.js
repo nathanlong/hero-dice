@@ -26,6 +26,7 @@ var app = new Vue({
 		multiDice: false,
 		roll: [],
 		rollTotal: 0,
+		rollDescription: "",
 		prefDice: true,
 		prefSound: true,
 		prefDiceCount: "highest",
@@ -86,29 +87,36 @@ var app = new Vue({
 			} else {
 				var count = Math.max(...result);
 			}
+
 			var sound;
 
-			if (this.prefSound === true && this.prefDiceCount !== "total" ) {
-				switch(count) {
-					case 6:
-						sound = success_6;
-						break;
-					case 5:
-						sound = success_5;
-						break;
-					case 4:
-						sound = success_4;
-						break;
-					case 3:
-						sound = fail_3;
-						break;
-					case 2:
-						sound = fail_2;
-						break;
-					default:
-						sound = fail_1;
-				}
+			switch(count) {
+				case 6:
+					sound = success_6;
+					this.rollDescription = "Success + Something Good!"
+					break;
+				case 5:
+					sound = success_5;
+					this.rollDescription = "Success!"
+					break;
+				case 4:
+					sound = success_4;
+					this.rollDescription = "Success + Something Bad!"
+					break;
+				case 3:
+					sound = fail_3;
+					this.rollDescription = "Failure + Something Good!"
+					break;
+				case 2:
+					sound = fail_2;
+					this.rollDescription = "Failure!"
+					break;
+				default:
+					sound = fail_1;
+					this.rollDescription = "Failure + Something Bad!"
+			}
 
+			if (this.prefSound === true && this.prefDiceCount !== "total" ) {
 				setTimeout(function(){
 					sound.play();
 				}, 400)

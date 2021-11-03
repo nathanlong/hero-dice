@@ -385,14 +385,15 @@ textarea {
 	background-color: rgba(255,255,255,.9);
 	padding: 1rem;
 	z-index: 1;
+	overflow-y: scroll;
 }
 
 .options-toggle {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	right: 0;
-	width: 50px;
-	height: 50px;
+	width: 55px;
+	height: 55px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -430,6 +431,10 @@ textarea {
   background-color: rgba(255,255,255,1);
 }
 
+.options-title {
+  margin-top: 0;
+}
+
 .form-set	{
   margin: 1rem 0;
 }
@@ -458,6 +463,54 @@ textarea {
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
 	opacity: 0;
 }
+
+
+@media (orientation: landscape) {
+	.display-container {
+		position: relative;
+	  display: flex;
+		flex-direction: row;
+	}
+
+	.dice-controls-wrapper {
+	  flex: 0 0 75%;
+		height: 100%;
+	}
+
+	.dice-4 .dice {
+	  height: calc(33.333333vh - 18.33333333px)
+	}
+
+	.dice-6 .dice {
+	  height: calc(33.333333vh - 18.33333333px)
+	}
+
+	.dice-6 .dice-roller {
+		flex: 0 0 33.333333%;
+	  width: 33.333333%
+	}
+
+	.dice-icon-el {
+	  width: 6vw;
+	}
+
+	.dice-wrapper {
+	  flex: 0 0 33.333333%;
+		width: 33.333333%;
+	}
+
+	.log-wrapper {
+		position: absolute;
+		left: 75%;
+		top: 0;
+		right: 0;
+	  flex: 0 0 25%;
+		min-width: 25%;
+		height: 100% !important;
+		border-color: #ddd;
+	}
+}
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */

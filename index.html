@@ -3,10 +3,10 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Hero Dice</title>
-		<meta name="description" content="Dice rolling for heroic adventures">
+		<meta name="description" content="A simple dice roller for Tiny Epic Heroes (and other systems)">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<meta property="og:title" content="">
+		<meta property="og:title" content="Hero Dice">
 		<meta property="og:type" content="">
 		<meta property="og:url" content="">
 		<meta property="og:image" content="">
@@ -32,28 +32,29 @@
 					<span class="options-toggle-bar"></span>
 				</button>
 			</div>
-			<div v-bind:class="[prefDiceAmount]" class="d-flex">
-				<button v-on:click="rollX(1)" class="dice dice-1 flex-50">
+			<div class="display-container">
+			<div v-bind:class="[prefDiceAmount]" class="dice-controls-wrapper d-flex">
+				<button v-on:click="rollX(1)" class="dice dice-roller dice-1 flex-50">
 					<span class="dice-number">1</span>
 					<span class="dice-description">OK</span>
 				</button>
-				<button v-on:click="rollX(2)" class="dice dice-2 flex-50">
+				<button v-on:click="rollX(2)" class="dice dice-roller dice-2 flex-50">
 					<span class="dice-number">2</span>
 					<span class="dice-description">Good</span>
 				</button>
-				<button v-on:click="rollX(3)" class="dice dice-3 flex-50">
+				<button v-on:click="rollX(3)" class="dice dice-roller dice-3 flex-50">
 					<span class="dice-number">3</span>
 					<span class="dice-description">Excellent!</span>
 				</button>
-				<button v-on:click="rollX(4)" class="dice dice-4 flex-50">
+				<button v-on:click="rollX(4)" class="dice dice-roller dice-4 flex-50">
 					<span class="dice-number">4</span>
 					<span class="dice-description">Superhuman!</span>
 				</button>
-				<button v-if="prefDiceAmount === 'dice-6'" v-on:click="rollX(5)" class="dice dice-5 flex-50">
+				<button v-if="prefDiceAmount === 'dice-6'" v-on:click="rollX(5)" class="dice dice-roller dice-5 flex-50">
 					<span class="dice-number">5</span>
 					<span class="dice-description">Superhuman!</span>
 				</button>
-				<button v-if="prefDiceAmount === 'dice-6'" v-on:click="rollX(6)" class="dice dice-6 flex-50">
+				<button v-if="prefDiceAmount === 'dice-6'" v-on:click="rollX(6)" class="dice dice-roller dice-6 flex-50">
 					<span class="dice-number">6</span>
 					<span class="dice-description">Superhuman!</span>
 				</button>
@@ -73,6 +74,15 @@
 					<span class="dice-description">Highest</span>
 				</button>
 			</div>
+			<div id="log" v-bind:class="[prefDiceAmount]" class="log-wrapper">
+				<div id="log-inner" class="log-inner-wrapper">
+					<p class="log-entry"><strong>Results:</strong></p>
+					<p v-for="entry in log" class="log-entry">
+						{{entry}} = {{rollSum(entry)}}
+					</p>
+				</div>
+			</div>
+			</div>
 			<transition name="fade" mode="out-in">
 			<div v-if="roll.length > 0" v-on:click="clearRoll()" class="dice-display">
 				<div class="dice-container d-flex flex-center">
@@ -88,6 +98,7 @@
 					<p v-if="prefDiceCount === 'highest'" class="dice-max flex-100">Highest: <span>{{Math.max(...roll)}}</span></p>
 					<p v-if="prefDiceCount === 'lowest'" class="dice-max flex-100">Lowest: <span>{{Math.min(...roll)}}</span></p>
 					<p v-if="prefDiceCount === 'total'" class="dice-max dice-max-total flex-100">Total: <span>{{rollTotal}}</span></p>
+					<p v-if="rollDescription" class="dice-max dice-max-total flex-100">{{rollDescription}}</p>
 
 				</div>
 			</div>
@@ -112,7 +123,7 @@
 					<span class="options-toggle-bar"></span>
 				</button>
 
-				<h2>Hero Dice</h2>
+				<h2 class="options-title">Hero Dice</h2>
 				<p>A super-simple dice roller designed for <strong>Tiny Epic Heroes</strong> that coincidentally works for several systems.</p>
 
 				<h2>Options</h2>
@@ -124,7 +135,7 @@
 
 				<div class="form-set">
 					<input type="checkbox" id="preference-sound" v-model="prefSound">
-					<label for="preference-sound">Play Result Sounds? (Requires Highest Rolled method)</label>
+					<label for="preference-sound">Play Silly Result Sounds?</label>
 				</div>
 
 				<div class="form-set">
@@ -142,19 +153,11 @@
 						<option disabled value="">Please select one</option>
 						<option value="highest">Highest Rolled</option>
 						<option value="lowest">Lowest Rolled</option>
-						<option value="total">Dice Total</option>
+						<option value="total">Dice Total (Risus)</option>
 					</select>
 				</div>
 			</div>
 			</transition>
-			<div id="log" v-bind:class="[prefDiceAmount]" class="log-wrapper">
-				<div id="log-inner" class="log-inner-wrapper">
-					<p class="log-entry"><strong>Results:</strong></p>
-					<p v-for="entry in log" class="log-entry">
-						{{entry}} = {{rollSum(entry)}}
-					</p>
-				</div>
-			</div>
 		</div>
 
 		<script src="js/vendor/modernizr-3.11.7.min.js"></script>
