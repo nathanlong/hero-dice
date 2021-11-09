@@ -320,6 +320,17 @@ textarea {
   margin-top: 0;
 }
 
+.dice-result-description {
+  font-weight: bold;
+}
+
+.dice-result-description span {
+	font-size: 1.5em;
+	display: block;
+	margin: 0 auto;
+	font-weight: normal;
+}
+
 .dice-input {
   font-size: 2rem;
 	width: 150px;

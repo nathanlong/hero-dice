@@ -27,22 +27,32 @@ var app = new Vue({
 		roll: [],
 		rollTotal: 0,
 		rollDescription: "",
-		prefDice: true,
-		prefSound: true,
-		prefDiceCount: "highest",
-		prefDiceAmount: "dice-4",
+		preferences: {
+			diceSounds: true,
+			resultSounds: true,
+			diceCount: "highest",
+			diceAmount: "dice-4",
+			resultDescription: true
+		},
 		screenOptions: false,
 	},
 	computed: {
 		diceHighest: function() {
-			if (this.prefDiceCount === "highest") {
+			if (this.preferences.diceCount === "highest") {
 				return true;
 			} else {
 				return false;
 			}
 		},
 		diceLowest: function() {
-			if (this.prefDiceCount === "lowest") {
+			if (this.preferences.diceCount === "lowest") {
+				return true;
+			} else {
+				return false;
+			}
+		},
+		diceTotal: function() {
+			if (this.preferences.diceCount === "total") {
 				return true;
 			} else {
 				return false;
@@ -62,7 +72,7 @@ var app = new Vue({
 			this.rollResult(result);
 
 			// play dem bone sounds
-			if (this.prefDice === true ) {
+			if (this.preferences.diceSounds === true ) {
 				if (value < 2) {
 					audioOne.play();
 				} else if (value > 1 && value <= 3 ) {
@@ -82,7 +92,7 @@ var app = new Vue({
 			this.rollTotal = this.rollSum(result);
 			this.log.push(result);
 
-			if (this.prefDiceCount === 'lowest') {
+			if (this.preferences.diceCount === 'lowest') {
 				var count = Math.min(...result);
 			} else {
 				var count = Math.max(...result);
@@ -93,30 +103,30 @@ var app = new Vue({
 			switch(count) {
 				case 6:
 					sound = success_6;
-					this.rollDescription = "Success + Something Good!"
+					this.rollDescription = "<span>👍 + 😃</span> Success + Something Good!"
 					break;
 				case 5:
 					sound = success_5;
-					this.rollDescription = "Success!"
+					this.rollDescription = "<span>👍</span> Success!"
 					break;
 				case 4:
 					sound = success_4;
-					this.rollDescription = "Success + Something Bad!"
+					this.rollDescription = "<span>👍 + 😧</span> Success + Something Bad!"
 					break;
 				case 3:
 					sound = fail_3;
-					this.rollDescription = "Failure + Something Good!"
+					this.rollDescription = "<span>👎 + 😃</span> Failure + Something Good!"
 					break;
 				case 2:
 					sound = fail_2;
-					this.rollDescription = "Failure!"
+					this.rollDescription = "<span>👎</span> Failure!"
 					break;
 				default:
 					sound = fail_1;
-					this.rollDescription = "Failure + Something Bad!"
+					this.rollDescription = "<span>👎 + 😧</span>Failure + Something Bad!"
 			}
 
-			if (this.prefSound === true && this.prefDiceCount !== "total" ) {
+			if (this.preferences.resultSounds === true && this.preferences.diceCount !== "total" ) {
 				setTimeout(function(){
 					sound.play();
 				}, 400)

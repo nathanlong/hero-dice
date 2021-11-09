@@ -33,7 +33,7 @@
 				</button>
 			</div>
 			<div class="display-container">
-			<div v-bind:class="[prefDiceAmount]" class="dice-controls-wrapper d-flex">
+			<div v-bind:class="[preferences.diceAmount]" class="dice-controls-wrapper d-flex">
 				<button v-on:click="rollX(1)" class="dice dice-roller dice-1 flex-50">
 					<span class="dice-number">1</span>
 					<span class="dice-description">OK</span>
@@ -50,15 +50,15 @@
 					<span class="dice-number">4</span>
 					<span class="dice-description">Superhuman!</span>
 				</button>
-				<button v-if="prefDiceAmount === 'dice-6'" v-on:click="rollX(5)" class="dice dice-roller dice-5 flex-50">
+				<button v-if="preferences.diceAmount === 'dice-6'" v-on:click="rollX(5)" class="dice dice-roller dice-5 flex-50">
 					<span class="dice-number">5</span>
 					<span class="dice-description">Superhuman!</span>
 				</button>
-				<button v-if="prefDiceAmount === 'dice-6'" v-on:click="rollX(6)" class="dice dice-roller dice-6 flex-50">
+				<button v-if="preferences.diceAmount === 'dice-6'" v-on:click="rollX(6)" class="dice dice-roller dice-6 flex-50">
 					<span class="dice-number">6</span>
 					<span class="dice-description">Superhuman!</span>
 				</button>
-				<button v-on:click="prefDiceCount = 'lowest'" class="dice dice-control dice-low flex-25" v-bind:class="{active: diceLowest}">
+				<button v-on:click="preferences.diceCount = 'lowest'" class="dice dice-control dice-low flex-25" v-bind:class="{active: diceLowest}">
 					<span class="dice-icon">
 						<svg class="dice-icon-el" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve"><path d="M21.019 26.213a.997.997 0 0 0-.707.293l-2.83 2.83-2.793-2.793a.999.999 0 1 0-1.414 1.414l3.5 3.5a.999.999 0 0 0 1.414 0l3.537-3.537a.999.999 0 0 0-.707-1.707zM17.5 12.431a1.819 1.819 0 1 0 0 3.638 1.819 1.819 0 0 0 0-3.638zm8-9.181h-16a3 3 0 0 0-3 3v16a3 3 0 0 0 3 3h16a3 3 0 0 0 3-3v-16a3 3 0 0 0-3-3zm1 19c0 .551-.449 1-1 1h-16c-.551 0-1-.449-1-1v-16c0-.551.449-1 1-1h16c.551 0 1 .449 1 1v16z"/></svg>
 					</span>
@@ -67,14 +67,14 @@
 				<button v-on:click="multiDice = true" class="dice dice-multi flex-50">
 					<span class="dice-number">Other</span>
 				</button>
-				<button v-on:click="prefDiceCount = 'highest'" class="dice dice-control dice-high flex-25" v-bind:class="{active: diceHighest}">
+				<button v-on:click="preferences.diceCount = 'highest'" class="dice dice-control dice-high flex-25" v-bind:class="{active: diceHighest}">
 					<span class="dice-icon">
 						<svg class="dice-icon-el" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve"><path d="M13.401 18.931a1.82 1.82 0 1 0 0 3.638 1.82 1.82 0 0 0 0-3.638zm0-4.81a1.82 1.82 0 1 0 0 3.638 1.82 1.82 0 0 0 0-3.638zm1.287-5.664 2.793-2.793 2.83 2.83a.997.997 0 0 0 1.414 0 .999.999 0 0 0 0-1.414l-3.537-3.537a.999.999 0 0 0-1.414 0l-3.5 3.5a.999.999 0 1 0 1.414 1.414zm-1.287 15.285a1.819 1.819 0 1 0 0 3.638 1.819 1.819 0 0 0 0-3.638zm8.282-9.621a1.82 1.82 0 1 0 0 3.638 1.82 1.82 0 0 0 0-3.638zM25.5 9.75h-16a3 3 0 0 0-3 3v16a3 3 0 0 0 3 3h16a3 3 0 0 0 3-3v-16a3 3 0 0 0-3-3zm1 19c0 .551-.449 1-1 1h-16c-.551 0-1-.449-1-1v-16c0-.551.449-1 1-1h16c.551 0 1 .449 1 1v16zm-4.817-5.008a1.819 1.819 0 1 0 0 3.638 1.819 1.819 0 0 0 0-3.638zm0-4.811a1.82 1.82 0 1 0 0 3.638 1.82 1.82 0 0 0 0-3.638z"/></svg>
 					</span>
 					<span class="dice-description">Highest</span>
 				</button>
 			</div>
-			<div id="log" v-bind:class="[prefDiceAmount]" class="log-wrapper">
+			<div id="log" v-bind:class="[preferences.diceAmount]" class="log-wrapper">
 				<div id="log-inner" class="log-inner-wrapper">
 					<p class="log-entry"><strong>Results:</strong></p>
 					<p v-for="entry in log" class="log-entry">
@@ -95,10 +95,10 @@
 							{{ dice }}
 						</div>
 					</div>
-					<p v-if="prefDiceCount === 'highest'" class="dice-max flex-100">Highest: <span>{{Math.max(...roll)}}</span></p>
-					<p v-if="prefDiceCount === 'lowest'" class="dice-max flex-100">Lowest: <span>{{Math.min(...roll)}}</span></p>
-					<p v-if="prefDiceCount === 'total'" class="dice-max dice-max-total flex-100">Total: <span>{{rollTotal}}</span></p>
-					<p v-if="rollDescription" class="dice-max dice-max-total flex-100">{{rollDescription}}</p>
+					<p v-if="diceHighest" class="dice-max flex-100">Highest: <span>{{Math.max(...roll)}}</span></p>
+					<p v-if="diceLowest" class="dice-max flex-100">Lowest: <span>{{Math.min(...roll)}}</span></p>
+					<p v-if="diceTotal" class="dice-max dice-max-total flex-100">Total: <span>{{rollTotal}}</span></p>
+					<p v-if="preferences.resultDescription && !diceTotal" class="dice-max dice-result-description flex-100" v-html="rollDescription"></p>
 
 				</div>
 			</div>
@@ -129,18 +129,18 @@
 				<h2>Options</h2>
 
 				<div class="form-set">
-					<input type="checkbox" id="preference-dice" v-model="prefDice">
+					<input type="checkbox" id="preference-dice" v-model="preferences.diceSounds">
 					<label for="preference-dice">Play Dice Sounds?</label>
 				</div>
 
 				<div class="form-set">
-					<input type="checkbox" id="preference-sound" v-model="prefSound">
+					<input type="checkbox" id="preference-sound" v-model="preferences.resultSounds">
 					<label for="preference-sound">Play Silly Result Sounds?</label>
 				</div>
 
 				<div class="form-set">
 					<label for="preference-dice-number">Visible Dice Pools</label>
-					<select id="preference-dice-number" name="preference-number" class="options-select" v-model="prefDiceAmount">
+					<select id="preference-dice-number" name="preference-number" class="options-select" v-model="preferences.diceAmount">
 						<option disabled value="">Please select one</option>
 						<option value="dice-4">4 dice pools</option>
 						<option value="dice-6">6 dice pools</option>
@@ -149,11 +149,11 @@
 
 				<div class="form-set">
 					<label for="preference-dice-number">Choose counting method:</label>
-					<select id="preference-dice-number" name="preference-number" class="options-select" v-model="prefDiceCount">
+					<select id="preference-dice-number" name="preference-number" class="options-select" v-model="preferences.diceCount">
 						<option disabled value="">Please select one</option>
 						<option value="highest">Highest Rolled</option>
 						<option value="lowest">Lowest Rolled</option>
-						<option value="total">Dice Total (Risus)</option>
+						<option value="total">Dice Total</option>
 					</select>
 				</div>
 			</div>
