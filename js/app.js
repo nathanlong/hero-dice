@@ -28,6 +28,7 @@ var app = new Vue({
 		rollTotal: 0,
 		rollDescription: "",
 		preferences: {
+			preset: "preset-tiny-epic",
 			diceSounds: true,
 			resultSounds: true,
 			diceCount: "highest",
@@ -57,7 +58,7 @@ var app = new Vue({
 			} else {
 				return false;
 			}
-		}
+		},
 	},
 	methods: {
 		rollDice: function(min, max) {
@@ -126,7 +127,7 @@ var app = new Vue({
 					this.rollDescription = "<span>👎 + 😧</span>Failure + Something Bad!"
 			}
 
-			if (this.preferences.resultSounds === true && this.preferences.diceCount !== "total" ) {
+			if (this.preferences.resultSounds === true) {
 				setTimeout(function(){
 					sound.play();
 				}, 400)
@@ -138,6 +139,39 @@ var app = new Vue({
 			}, 0);
 			return sum;
 		},
+		presetCheck: function() {
+			switch(this.preferences.preset) {
+				case 'preset-tiny-epic':
+					this.preferences.diceSounds = true;
+					this.preferences.resultSounds = true;
+					this.preferences.diceCount = "highest";
+					this.preferences.diceAmount = "dice-4";
+					this.preferences.resultDescription = true;
+					break;
+				case 'preset-fu':
+					this.preferences.diceSounds = true;
+					this.preferences.resultSounds = false;
+					this.preferences.diceCount = "highest";
+					this.preferences.diceAmount = "dice-4";
+					this.preferences.resultDescription = true;
+					break;
+				case 'preset-risus':
+					this.preferences.diceSounds = true;
+					this.preferences.resultSounds = false;
+					this.preferences.diceCount = "total";
+					this.preferences.diceAmount = "dice-6";
+					this.preferences.resultDescription = false;
+					break;
+			}
+		},
+		countCheck: function() {
+			switch(this.preferences.diceCount) {
+				case 'total':
+					this.preferences.resultSounds = false;
+					this.preferences.resultDescription = false;
+					break;
+			}
+		},
 		scrollLog: function() {
 			var element = document.getElementById("log");
 			var inner = document.getElementById("log-inner");
@@ -147,7 +181,6 @@ var app = new Vue({
 			this.roll = [];
 			this.scrollLog();
 		},
-		// accepts string of var
 		screenSwitch: function() {
 			if ( this.screenOptions === false ) {
 				this.screenOptions = true;

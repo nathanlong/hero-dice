@@ -52,11 +52,11 @@
 				</button>
 				<button v-if="preferences.diceAmount === 'dice-6'" v-on:click="rollX(5)" class="dice dice-roller dice-5 flex-50">
 					<span class="dice-number">5</span>
-					<span class="dice-description">Superhuman!</span>
+					<span class="dice-description">Mastery!</span>
 				</button>
 				<button v-if="preferences.diceAmount === 'dice-6'" v-on:click="rollX(6)" class="dice dice-roller dice-6 flex-50">
 					<span class="dice-number">6</span>
-					<span class="dice-description">Superhuman!</span>
+					<span class="dice-description">Ultimate Mastery!</span>
 				</button>
 				<button v-on:click="preferences.diceCount = 'lowest'" class="dice dice-control dice-low flex-25" v-bind:class="{active: diceLowest}">
 					<span class="dice-icon">
@@ -98,7 +98,7 @@
 					<p v-if="diceHighest" class="dice-max flex-100">Highest: <span>{{Math.max(...roll)}}</span></p>
 					<p v-if="diceLowest" class="dice-max flex-100">Lowest: <span>{{Math.min(...roll)}}</span></p>
 					<p v-if="diceTotal" class="dice-max dice-max-total flex-100">Total: <span>{{rollTotal}}</span></p>
-					<p v-if="preferences.resultDescription && !diceTotal" class="dice-max dice-result-description flex-100" v-html="rollDescription"></p>
+					<p v-if="preferences.resultDescription" class="dice-max dice-result-description flex-100" v-html="rollDescription"></p>
 
 				</div>
 			</div>
@@ -126,7 +126,18 @@
 				<h2 class="options-title">Hero Dice</h2>
 				<p>A super-simple dice roller designed for <strong>Tiny Epic Heroes</strong> that coincidentally works for several systems.</p>
 
+				<div class="form-set">
+					<label for="preference-preset"><strong>RPG System Presets</strong></label>
+					<select v-on:change="presetCheck" id="preference-preset" name="preference-preset" class="options-select" v-model="preferences.preset">
+						<option disabled value="">Please select one</option>
+						<option value="preset-tiny-epic">Tiny Epic Heroes (default)</option>
+						<option value="preset-fu">Freeform Universal</option>
+						<option value="preset-risus">Risus</option>
+					</select>
+				</div>
+
 				<h2>Options</h2>
+
 
 				<div class="form-set">
 					<input type="checkbox" id="preference-dice" v-model="preferences.diceSounds">
@@ -136,6 +147,11 @@
 				<div class="form-set">
 					<input type="checkbox" id="preference-sound" v-model="preferences.resultSounds">
 					<label for="preference-sound">Play Silly Result Sounds?</label>
+				</div>
+
+				<div class="form-set">
+					<input type="checkbox" id="preference-labels" v-model="preferences.resultDescription">
+					<label for="preference-labels">Display Tiny Epic Heroes / FU roll results?</label>
 				</div>
 
 				<div class="form-set">
@@ -149,7 +165,7 @@
 
 				<div class="form-set">
 					<label for="preference-dice-number">Choose counting method:</label>
-					<select id="preference-dice-number" name="preference-number" class="options-select" v-model="preferences.diceCount">
+					<select id="preference-dice-number" name="preference-number" class="options-select" v-on:change="countCheck" v-model="preferences.diceCount">
 						<option disabled value="">Please select one</option>
 						<option value="highest">Highest Rolled</option>
 						<option value="lowest">Lowest Rolled</option>
