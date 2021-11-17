@@ -35,3 +35,4 @@ measures and it allows me to not even have to ask how they did.
 
 * Allow persistent preferences in localStorage
 * Fine-tune animations
+* Add 'light/dark' theme detection
