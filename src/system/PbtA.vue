@@ -8,30 +8,30 @@ import ModalSettings from '@/components/ModalSettings.vue'
 
 // Settings
 const systemPrefs: Preferences = {
+  system: 'PbtA',
   instructions: 'Set modifier then roll',
   dicePool: 1,
   criticalFail: 0,
   criticalSuccess: 0,
   useModifier: true,
   useDescription: true,
-  displayResults: "total",
+  displayResults: 'total'
 }
 
 if (store.merge) store.merge(systemPrefs)
-
 
 // Roll Descriptions
 const rollDescription: ComputedRef<string> = computed(() => {
   let description: string = ''
   if (results.total >= 10) {
-     description = "Success / Strong Hit"
-     return description
+    description = 'Success / Strong Hit'
+    return description
   } else if (results.total >= 7) {
-     description = "Mixed / Weak Hit"
-     return description
+    description = 'Mixed / Weak Hit'
+    return description
   } else {
-     description = "Failure"
-     return description
+    description = 'Failure'
+    return description
   }
 })
 
@@ -82,7 +82,6 @@ const stepperRange: Array<number> = [-3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 1
     --local-options-height: 29dvh;
   }
 }
-
 
 .btn--stepper {
   font-weight: 900;

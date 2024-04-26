@@ -17,7 +17,7 @@ import ModalResults from './components/ModalResults.vue'
 // grab settings
 const STORAGE_KEY = 'preferences'
 const LOCAL_PREFS = ref(JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'))
-store.merge(LOCAL_PREFS.value)
+if (store.merge) store.merge(LOCAL_PREFS.value)
 
 // persist state
 watchEffect(() => {

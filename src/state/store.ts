@@ -3,7 +3,7 @@ import { reactive } from 'vue'
 export interface Preferences {
   theme?: string,
   instructions?: string,
-  system?: string,
+  system: string,
   dicePool: number,
   criticalFail?: number,
   criticalSuccess?: number,

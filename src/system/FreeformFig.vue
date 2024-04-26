@@ -8,6 +8,7 @@ import ModalSettings from '@/components/ModalSettings.vue';
 
 // Settings
 const systemPrefs: Preferences = {
+  system: "FreeformFig",
   instructions: 'Choose how many dice to roll',
   dicePool: 4,
   criticalFail: 1,

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, type Ref } from 'vue'
-import { store } from '@/state/store'
 import { results } from '@/state/results'
 import { rollX } from '@/methods/dice'
 const props = defineProps({
@@ -12,6 +11,7 @@ const props = defineProps({
   range: Array<number>
 })
 
+const maxResult: Ref<number> = ref(props.maxResult ?? 6);
 const useStepper: Ref<Boolean> = ref(props.stepper ?? false);
 const active: Ref<Boolean> = ref(false)
 
@@ -60,7 +60,7 @@ function handleTotalRoll() {
             class="btn"
             :class="{ active: results.numberDie === n }"
             :key="n"
-            @click="handleRoll(n, props.maxResult)"
+            @click="handleRoll(n, maxResult)"
           >
             <span class="btn__label">
               {{ n }}

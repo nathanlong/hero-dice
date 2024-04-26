@@ -3,11 +3,12 @@ import { computed, type ComputedRef } from 'vue'
 import { store, type Preferences } from '@/state/store'
 import { results } from '@/state/results'
 import { rollX } from '@/methods/dice'
-import ModalMultiDice from '@/components/ModalMultiDice.vue';
-import ModalSettings from '@/components/ModalSettings.vue';
+import ModalMultiDice from '@/components/ModalMultiDice.vue'
+import ModalSettings from '@/components/ModalSettings.vue'
 
 // Settings
 const systemPrefs: Preferences = {
+  system: 'RisusSystem',
   instructions: 'Choose how many dice to roll',
   dicePool: 6,
   criticalFail: 0,
@@ -20,8 +21,15 @@ const systemPrefs: Preferences = {
 if (store.merge) store.merge(systemPrefs)
 
 // Control Ranges
-const diceDescriptions: Array<String> = ['ok', 'good', 'excellent', 'superhuman!', 'mastery!', 'ultimate mastery!']
-const diceRange: Array<number> = [7,8,9,10,11,12]
+const diceDescriptions: Array<String> = [
+  'ok',
+  'good',
+  'excellent',
+  'superhuman!',
+  'mastery!',
+  'ultimate mastery!'
+]
+const diceRange: Array<number> = [7, 8, 9, 10, 11, 12]
 </script>
 
 <template>
@@ -58,5 +66,4 @@ const diceRange: Array<number> = [7,8,9,10,11,12]
     --local-options-height: 23dvh;
   }
 }
-
 </style>
