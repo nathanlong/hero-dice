@@ -19,6 +19,16 @@ const systemPrefs: Preferences = {
 
 if (store.merge) store.merge(systemPrefs)
 
+function toggleResultType() {
+  if (store.displayResults === 'highest') {
+    store.displayResults = 'lowest'
+  } else if (store.displayResults === 'lowest') {
+    store.displayResults = 'total'
+  } else if (store.displayResults === 'total') {
+    store.displayResults = 'highest'
+  }
+}
+
 const diceTypes = {
   d4: 4,
   d6: 6,
@@ -65,6 +75,15 @@ const modRange: Array<number> = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 1
     >
       <span class="btn__label">&times;</span>
       <span class="btn__description">Clear</span>
+    </button>
+
+    <button class="btn btn--other" @click="toggleResultType">
+      <span v-if="store.displayResults === 'highest'" class="btn__label text-success">↑</span>
+      <span v-if="store.displayResults === 'lowest'" class="btn__label text-fail">↓</span>
+      <span v-if="store.displayResults === 'total'" class="btn__label text-success">&equals;</span>
+      <span class="btn__description">
+        {{ store.displayResults }}
+      </span>
     </button>
     <ModalSettings />
   </div>

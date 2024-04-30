@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue'
+import { onMounted, ref, watchEffect } from 'vue'
 
 // state
 import { store } from './state/store'
@@ -24,6 +24,29 @@ if (store.merge) store.merge(LOCAL_PREFS.value)
 watchEffect(() => {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(store))
 })
+
+// set theme by preference and watch for changes
+function getMediaPreference() {
+  const hasDarkPreference = window.matchMedia('(prefers-color-scheme: dark)').matches
+  if (hasDarkPreference) {
+    return 'dark'
+  } else {
+    return 'light'
+  }
+}
+
+const userTheme = ref<string>(LOCAL_PREFS.value.theme || getMediaPreference())
+
+onMounted(() => {
+  store.theme = userTheme.value
+})
+
+watchEffect(() => {
+   const theme = store.theme ?? 'light'
+   document.documentElement.className = theme
+   if (theme !== 'light') import(`./assets/themes/${theme}.css`)
+})
+
 </script>
 
 <template>
@@ -59,5 +82,3 @@ watchEffect(() => {
 
   <ModalResults />
 </template>
-
-<style scoped></style>

@@ -36,23 +36,6 @@ import { clearRoll, freezeIndex, reRoll } from '@/methods/dice'
             class="result-description"
             v-html="results.description"
           ></div>
-
-          <!-- System Specific -->
-          <div
-            v-if="
-              results.numberDie >= 2 && store.system === 'D20System' && results.maxResult === 20
-            "
-            class="advantage result-description"
-          >
-            <p>
-              Advantage: {{ results.highest }} + {{ results.modifier }} =
-              <strong>{{ results.highest + results.modifier }}</strong>
-            </p>
-            <p>
-              Disadvantage: {{ results.lowest }} + {{ results.modifier }} =
-              <strong>{{ results.lowest + results.modifier }}</strong>
-            </p>
-          </div>
         </div>
 
         <button class="btn btn--results btn-reroll" @click="reRoll">Reroll</button>

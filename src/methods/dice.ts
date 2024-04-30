@@ -60,16 +60,16 @@ function computeResults() {
 
   switch (store.displayResults) {
     case 'total':
-      results.display = results.total
+      results.display = results.total + results.modifier
       break
     case 'highest':
-      results.display = results.highest
+      results.display = results.highest + results.modifier
       break
     case 'lowest':
-      results.display = results.lowest
+      results.display = results.lowest + results.modifier
       break;
     default:
-      results.display = results.total
+      results.display = results.total + results.modifier
   }
 
   log.results.unshift({
