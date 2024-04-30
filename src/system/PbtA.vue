@@ -6,15 +6,17 @@ import { rollX } from '@/methods/dice'
 import ModalModStepper from '@/components/ModalModStepper.vue'
 import ModalSettings from '@/components/ModalSettings.vue'
 
+const success: HTMLAudioElement = new Audio('/hero-dice/audio/generic-success.mp3')
+const fail: HTMLAudioElement = new Audio('/hero-dice/audio/generic-fail.mp3')
+
 // Settings
 const systemPrefs: Preferences = {
   system: 'PbtA',
   instructions: 'Set modifier then roll',
   dicePool: 1,
-  criticalFail: 0,
-  criticalSuccess: 0,
   useModifier: true,
   useDescription: true,
+  useCrits: false,
   displayResults: 'total'
 }
 

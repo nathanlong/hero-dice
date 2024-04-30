@@ -3,27 +3,35 @@ import { computed, type ComputedRef } from 'vue'
 import { store, type Preferences } from '@/state/store'
 import { results } from '@/state/results'
 import { rollX } from '@/methods/dice'
-import ModalMultiDice from '@/components/ModalMultiDice.vue';
-import ModalSettings from '@/components/ModalSettings.vue';
+import ModalMultiDice from '@/components/ModalMultiDice.vue'
+import ModalSettings from '@/components/ModalSettings.vue'
 
 // Settings
 const systemPrefs: Preferences = {
-  system: "FreeformFig",
+  system: 'FreeformFig',
   instructions: 'Choose how many dice to roll',
   dicePool: 4,
-  criticalFail: 1,
-  criticalSuccess: 6,
   useModifier: false,
   useDescription: true,
+  useCrits: true,
   displayResults: 'highest'
 }
 
 if (store.merge) store.merge(systemPrefs)
 
+function toggleResultType() {
+  if (store.displayResults === 'highest') {
+    store.displayResults = 'lowest'
+  } else if (store.displayResults === 'lowest') {
+    store.displayResults = 'highest'
+  }
+}
+
 // Roll Descriptions
 const rollDescription: ComputedRef<string> = computed(() => {
   let description: string = ''
-  switch (results.highest) {
+  let resultType = store.displayResults === 'highest' ? results.highest : results.lowest
+  switch (resultType) {
     case 6:
       description = '<p>👍 + 😃</p> Success + Something Good!'
       break
@@ -49,7 +57,7 @@ results.setDescription(rollDescription)
 
 // Control Ranges
 const diceDescriptions: Array<String> = ['ok', 'good', 'excellent', 'superhuman!']
-const diceRange: Array<number> = [4,5,6,7,8,9]
+const diceRange: Array<number> = [4, 5, 6, 7, 8, 9]
 </script>
 
 <template>
@@ -63,6 +71,13 @@ const diceRange: Array<number> = [4,5,6,7,8,9]
   </button>
   <div class="options">
     <ModalMultiDice :range="diceRange" :immediateRoll="true" :maxResult="6" />
+    <button class="btn btn--other" @click="toggleResultType">
+      <span v-if="store.displayResults === 'highest'" class="btn__label text-success">↑</span>
+      <span v-if="store.displayResults === 'lowest'" class="btn__label text-fail">↓</span>
+      <span class="btn__description">
+        {{ store.displayResults }}
+      </span>
+    </button>
     <ModalSettings />
   </div>
 </template>
@@ -86,7 +101,4 @@ const diceRange: Array<number> = [4,5,6,7,8,9]
     --local-options-height: 30dvh;
   }
 }
-
-
-
 </style>

@@ -37,7 +37,7 @@ function handleTotalRoll() {
 
 <template>
   <div v-if="useStepper" class="stepper stepper--control">
-    <button class="btn btn--offset btn--stepper" @click="results.numberDie--">-</button>
+    <button class="btn btn--offset btn--stepper" @click="results.numberDie--" :disabled="results.numberDie <= 1">-</button>
     <button class="btn btn--other" @click="active = true">
       <span class="btn__label">{{ results.numberDie }}</span>
       <span class="btn__description"># of Die</span>
@@ -68,8 +68,9 @@ function handleTotalRoll() {
           </button>
         </div>
         <div v-if="!immediateRoll" class="stepper">
-          <button class="btn btn--offset btn--stepper" @click="results.numberDie--">-</button>
-          <input class="stepper__input" type="number" v-model="results.numberDie" />
+          <button class="btn btn--offset btn--stepper" @click="results.numberDie--" :disabled="results.numberDie <= 1">-</button>
+          <label for="stepper-input" class="sr-only">Enter amount of dice</label>
+          <input id="stepper-input" class="stepper__input" type="number" v-model="results.numberDie" />
           <button class="btn btn--offset btn--stepper" @click="results.numberDie++">+</button>
         </div>
         <button v-if="!props.immediateRoll && props.maxResult" class="btn btn--results btn--roll" @click="handleTotalRoll">

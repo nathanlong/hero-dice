@@ -10,10 +10,9 @@ const systemPrefs: Preferences = {
   system: 'D20System',
   instructions: 'Set amount, modifier, then type',
   dicePool: 6,
-  criticalFail: 1,
-  criticalSuccess: 20,
   useModifier: true,
   useDescription: false,
+  useCrits: true,
   preserveNumberDie: true,
   displayResults: 'total'
 }

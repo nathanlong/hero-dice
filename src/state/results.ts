@@ -17,6 +17,7 @@ export interface Results {
   toggleFreeze: Function
   setModifier: Function
   setDescription: Function
+  systemSound: HTMLAudioElement | false
 }
 
 export const results: Results = reactive({
@@ -31,6 +32,7 @@ export const results: Results = reactive({
   average: 0,
   modifier: 0,
   description: '',
+  systemSound: new Audio(''),
 
   clearRoll() {
     this.roll = []

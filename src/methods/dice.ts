@@ -2,6 +2,11 @@ import { store } from '@/state/store'
 import { results } from '@/state/results'
 import { log } from '@/state/log'
 
+const diceOne = new Audio('/hero-dice/audio/dice-one.mp3')
+const diceTwo = new Audio('/hero-dice/audio/dice-two.mp3')
+const diceMulti = new Audio('/hero-dice/audio/dice-multi.mp3')
+const diceMany = new Audio('/hero-dice/audio/dice-many.mp3')
+
 export function roll(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
@@ -17,6 +22,30 @@ export function rollX(num: number, size: number) {
   }
 
   computeResults()
+  playRollSound(numberDie)
+}
+
+function playRollSound(num: number) {
+  if (!store.useSounds) {
+    return
+  }
+  if (num >= 6) {
+    diceMany.load()
+    diceMany.play()
+    return
+  } else if (num >= 4) {
+    diceMulti.load()
+    diceMulti.play()
+    return
+  } else if (num >= 2) {
+    diceTwo.load()
+    diceTwo.play()
+    return
+  } else {
+    diceOne.load()
+    diceOne.play()
+    return
+  }
 }
 
 function computeResults() {
@@ -71,4 +100,5 @@ export function reRoll() {
 
   results.roll = newResults
   computeResults()
+  playRollSound(results.roll.length)
 }

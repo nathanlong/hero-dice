@@ -1,6 +1,19 @@
-# hero-dice-vue
+# Hero Dice 🎲
 
-This template should help get you started developing with Vue 3 in Vite.
+This is a simple little app for rolling dice for TTRPG'S, originally designed for my custom hack: [FIG](https://nathan-long.com/rules/games/fig/)
+
+It's intended to be:
+
+* Very lightweight
+* Quick to navigate and use
+* Provide simple audio feedback for use at the table (prevents fudging because you can hear the results of some systems)
+* Customizable with several color scheme options
+* Support several systems:
+    * Freeform Universal / FIG
+    * Risus
+    * Blades in the Dark
+    * Powerered by the Apocalypse systems
+    * D20 systems (D&D, Worlds Without Number, and many others)
 
 ## Recommended IDE Setup
 
@@ -9,10 +22,6 @@ This template should help get you started developing with Vue 3 in Vite.
 ## Type Support for `.vue` Imports in TS
 
 TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
 
 ## Project Setup
 

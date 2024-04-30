@@ -11,10 +11,9 @@ const systemPrefs: Preferences = {
   system: 'RisusSystem',
   instructions: 'Choose how many dice to roll',
   dicePool: 6,
-  criticalFail: 0,
-  criticalSuccess: 0,
   useModifier: false,
   useDescription: false,
+  useCrits: false,
   displayResults: 'total'
 }
 

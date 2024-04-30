@@ -10,7 +10,8 @@ import FreeformFig from './system/FreeformFig.vue'
 import PbtA from './system/PbtA.vue'
 import D20System from './system/D20System.vue'
 import RisusSystem from './system/RisusSystem.vue'
-const systems: any = { FreeformFig, PbtA, D20System, RisusSystem }
+import BladesInTheDark from './system/BladesInTheDark.vue'
+const systems: any = { FreeformFig, BladesInTheDark, PbtA, D20System, RisusSystem }
 
 import ModalResults from './components/ModalResults.vue'
 
@@ -30,6 +31,7 @@ watchEffect(() => {
     <div class="select-wrapper">
       <select v-model="store.system" id="system" name="system" class="system-select">
         <option value="FreeformFig">FFU / FIG</option>
+        <option value="BladesInTheDark">BitD</option>
         <option value="PbtA">PbtA</option>
         <option value="RisusSystem">Risus</option>
         <option value="D20System">d20</option>
