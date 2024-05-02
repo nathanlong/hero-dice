@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, type ComputedRef } from 'vue'
+import { computed, watchEffect, type ComputedRef } from 'vue'
 import { store, type Preferences } from '@/state/store'
 import { results } from '@/state/results'
 import { rollX } from '@/methods/dice'
@@ -16,6 +16,8 @@ const systemPrefs: Preferences = {
   useModifier: false,
   useDescription: true,
   useCrits: true,
+  useSystemSounds: true,
+  preserveNumberDie: false,
   displayResults: 'highest'
 }
 
@@ -57,6 +59,47 @@ const rollDescription: ComputedRef<string> = computed(() => {
 
 results.setDescription(rollDescription)
 
+// Sounds
+const success_6 = new Audio('/hero-dice/audio/6-success-wow.mp3')
+const success_5 = new Audio('/hero-dice/audio/5-success-wee.mp3')
+const success_4 = new Audio('/hero-dice/audio/4-success-sparkle.mp3')
+const fail_3 = new Audio('/hero-dice/audio/3-drums.mp3')
+const fail_2 = new Audio('/hero-dice/audio/2-fail-fart.mp3')
+const fail_1 = new Audio('/hero-dice/audio/1-fail-voice.mp3')
+
+watchEffect(() => {
+  let resultType = store.displayResults === 'highest' ? results.highest : results.lowest
+  switch (resultType) {
+    case 6:
+      playSound(success_6)
+      break
+    case 5:
+      playSound(success_5)
+      break
+    case 4:
+      playSound(success_4)
+      break
+    case 3:
+      playSound(fail_3)
+      break
+    case 2:
+      playSound(fail_2)
+      break
+    case 1:
+      playSound(fail_1)
+      break
+  }
+})
+
+function playSound(sound: HTMLAudioElement) {
+  if (store.useResultSounds && store.useSystemSounds) {
+    setTimeout(() => {
+      sound.load()
+      sound.play()
+    }, 500)
+  }
+}
+
 // Control Ranges
 const diceDescriptions: Array<String> = ['ok', 'good', 'excellent', 'superhuman!']
 const diceRange: Array<number> = [5, 6, 7, 8, 9, 10]
@@ -74,8 +117,12 @@ const diceRange: Array<number> = [5, 6, 7, 8, 9, 10]
   <div class="options">
     <ModalMultiDice :range="diceRange" :immediateRoll="true" :maxResult="6" />
     <button class="btn btn--other" @click="toggleResultType">
-      <span v-if="store.displayResults === 'highest'" class="btn__label text-success"><IconUp class="w-2" /></span>
-      <span v-if="store.displayResults === 'lowest'" class="btn__label text-fail"><IconDown class="w-2" /></span>
+      <span v-if="store.displayResults === 'highest'" class="btn__label text-success"
+        ><IconUp class="w-2"
+      /></span>
+      <span v-if="store.displayResults === 'lowest'" class="btn__label text-fail"
+        ><IconDown class="w-2"
+      /></span>
       <span class="btn__description">
         {{ store.displayResults }}
       </span>

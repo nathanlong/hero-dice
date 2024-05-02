@@ -14,6 +14,7 @@ const systemPrefs: Preferences = {
   useModifier: false,
   useDescription: false,
   useCrits: false,
+  useSystemSounds: false,
   displayResults: 'total'
 }
 

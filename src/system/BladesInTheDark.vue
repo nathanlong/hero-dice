@@ -1,30 +1,32 @@
 <script setup lang="ts">
-import { computed, type ComputedRef } from 'vue'
+import { computed, watchEffect, type ComputedRef } from 'vue'
 import { store, type Preferences } from '@/state/store'
 import { results } from '@/state/results'
 import { rollX } from '@/methods/dice'
-import ModalMultiDice from '@/components/ModalMultiDice.vue';
-import ModalSettings from '@/components/ModalSettings.vue';
+import ModalMultiDice from '@/components/ModalMultiDice.vue'
+import ModalSettings from '@/components/ModalSettings.vue'
 
 // Settings
 const systemPrefs: Preferences = {
-  system: "BladesInTheDark",
+  system: 'BladesInTheDark',
   instructions: 'Choose how many dice to roll',
   dicePool: 4,
   useModifier: false,
   useDescription: true,
   useCrits: true,
+  useSystemSounds: true,
+  preserveNumberDie: false,
   displayResults: 'highest'
 }
 
 if (store.merge) store.merge(systemPrefs)
 
-function countSixes(results:Array<number>) {
-   let amount:number = 0;
-   results.forEach((result) => {
+function countSixes(results: Array<number>) {
+  let amount: number = 0
+  results.forEach((result) => {
     if (result === 6) amount++
-   })
-   return amount;
+  })
+  return amount
 }
 
 // Roll Descriptions
@@ -48,8 +50,39 @@ const rollDescription: ComputedRef<string> = computed(() => {
 
 results.setDescription(rollDescription)
 
+// Sounds
+const fail = new Audio('/hero-dice/audio/generic-fail.mp3')
+const mixed = new Audio('/hero-dice/audio/generic-mixed.mp3')
+const success = new Audio('/hero-dice/audio/generic-success.mp3')
+const crit = new Audio('/hero-dice/audio/generic-crit.mp3')
+
+watchEffect(() => {
+  let sixes = countSixes(results.roll)
+  if (sixes >= 2) {
+    playSound(crit)
+    return
+  }
+
+  if (results.highest === 6) {
+    playSound(success)
+  } else if (results.total >= 4) {
+    playSound(mixed)
+  } else if (results.total >= 1) {
+    playSound(fail)
+  }
+})
+
+function playSound(sound: HTMLAudioElement) {
+  if (store.useResultSounds && store.useSystemSounds) {
+    setTimeout(() => {
+      sound.load()
+      sound.play()
+    }, 500)
+  }
+}
+
 // Control Ranges
-const diceRange: Array<number> = [4,5,6,7,8,9]
+const diceRange: Array<number> = [4, 5, 6, 7, 8, 9]
 </script>
 
 <template>
@@ -83,7 +116,4 @@ const diceRange: Array<number> = [4,5,6,7,8,9]
     --local-options-height: 30dvh;
   }
 }
-
-
-
 </style>

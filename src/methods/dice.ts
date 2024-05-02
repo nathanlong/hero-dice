@@ -99,6 +99,7 @@ export function reRoll() {
   })
 
   results.roll = newResults
+  results.clearComputed()
   computeResults()
   playRollSound(results.roll.length)
 }

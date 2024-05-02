@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import { computed, ref, type ComputedRef, type Ref } from 'vue'
+import { computed, ref, watchEffect, type ComputedRef, type Ref } from 'vue'
 import { store, type Preferences } from '@/state/store'
 import { results } from '@/state/results'
 import { rollX } from '@/methods/dice'
 import ModalModStepper from '@/components/ModalModStepper.vue'
 import ModalSettings from '@/components/ModalSettings.vue'
-
-const success: HTMLAudioElement = new Audio('/hero-dice/audio/generic-success.mp3')
-const fail: HTMLAudioElement = new Audio('/hero-dice/audio/generic-fail.mp3')
 
 // Settings
 const systemPrefs: Preferences = {
@@ -17,6 +14,8 @@ const systemPrefs: Preferences = {
   useModifier: true,
   useDescription: true,
   useCrits: false,
+  useSystemSounds: true,
+  preserveNumberDie: false,
   displayResults: 'total'
 }
 
@@ -38,6 +37,30 @@ const rollDescription: ComputedRef<string> = computed(() => {
 })
 
 results.setDescription(rollDescription)
+
+// Sounds
+const fail = new Audio('/hero-dice/audio/generic-fail.mp3')
+const mixed = new Audio('/hero-dice/audio/generic-mixed.mp3')
+const success = new Audio('/hero-dice/audio/generic-success.mp3')
+
+watchEffect(() => {
+  if (results.total >= 10) {
+    playSound(success)
+  } else if (results.total >= 7) {
+    playSound(mixed)
+  } else if (results.highest !== 0) {
+    playSound(fail)
+  }
+})
+
+function playSound(sound: HTMLAudioElement) {
+  if (store.useResultSounds && store.useSystemSounds) {
+    setTimeout(() => {
+      sound.load()
+      sound.play()
+    }, 500)
+  }
+}
 
 // Control Ranges
 const modSteps: Array<number> = [-3, -2, -1, 1, 2, 3]

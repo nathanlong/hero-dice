@@ -14,6 +14,7 @@ export interface Results {
   modifier: number
   description: string
   clearRoll: Function
+  clearComputed: Function
   toggleFreeze: Function
   setModifier: Function
   setDescription: Function
@@ -38,6 +39,9 @@ export const results: Results = reactive({
     this.roll = []
     this.frozenDie = []
     this.maxResult = 0
+    this.highest = 0
+    this.lowest = 0
+    this.total = 0
 
     if (!store.preserveNumberDie) {
       this.numberDie = 1
@@ -46,6 +50,12 @@ export const results: Results = reactive({
     if (!store.useModifier) {
       this.modifier = 0
     }
+  },
+
+  clearComputed() {
+    this.highest = 0
+    this.lowest = 0
+    this.total = 0
   },
 
   toggleFreeze(index: number) {

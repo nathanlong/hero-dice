@@ -266,7 +266,7 @@ header {
 
 .btn__description {
   color: var(--btn-description-color, var(--light-btn-description-color));
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   text-transform: uppercase;
 }
 
@@ -449,7 +449,7 @@ header {
   }
 
   .settings__item:nth-child(even) {
-    /* border-inline-start: 1px solid var(--btn-border-light, var(--light-btn-border-dark)); */
+    border-inline-start: 1px solid var(--btn-border-dark, var(--light-btn-border-dark));
   }
 }
 
@@ -458,6 +458,7 @@ header {
   flex-direction: var(--settings-item-direction, column);
   justify-content: center;
   padding: 1.5rem;
+  border-block-end: 1px solid var(--btn-border-dark, var(--light-btn-border-dark));
 }
 
 .settings__item--inline {

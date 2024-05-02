@@ -69,7 +69,7 @@ watchEffect(() => {
       <component :is="systems[store.system]"></component>
     </div>
 
-    <aside class="log">
+    <aside class="log" :inert="store.isModalActive">
       <div v-for="(result, index) in log.results" class="log__results" :key="index">
         <p>
           <span>{{ result.roll }}</span

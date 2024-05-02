@@ -50,7 +50,7 @@ function clearData() {
             </div>
             <div class="settings__item settings__item--inline">
               <label for="result-setting">Play Result Sounds?</label>
-              <input type="checkbox" id="result-setting" v-model="store.useSystemSounds" />
+              <input type="checkbox" id="result-setting" v-model="store.useResultSounds" />
             </div>
             <div class="settings__item">
               <label for="clear-data">Clear local data and preferences?</label>

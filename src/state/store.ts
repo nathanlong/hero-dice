@@ -8,6 +8,7 @@ export interface Preferences {
   useModifier?: boolean
   useDescription?: boolean
   useCrits?: boolean
+  useResultSounds?: boolean
   useSounds?: boolean
   useSystemSounds?: boolean
   preserveNumberDie?: boolean
@@ -26,6 +27,7 @@ export const store: Preferences = reactive<Preferences>({
   useDescription: false,
   useCrits: true,
   useSounds: true,
+  useResultSounds: true,
   useSystemSounds: true,
   preserveNumberDie: false,
   isModalActive: false,
