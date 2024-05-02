@@ -50,8 +50,9 @@ watchEffect(() => {
 </script>
 
 <template>
-  <header class="header">
+  <header class="header" :inert="store.isModalActive">
     <div class="select-wrapper">
+      <label for="system" class="sr-only">Select a system</label>
       <select v-model="store.system" id="system" name="system" class="system-select">
         <option value="FreeformFig">FFU / FIG</option>
         <option value="BladesInTheDark">BitD</option>
@@ -63,7 +64,7 @@ watchEffect(() => {
     <p class="instructions">{{ store.instructions }}</p>
   </header>
 
-  <main class="main">
+  <main class="main" :inert="store.isModalActive">
     <div class="controls">
       <component :is="systems[store.system]"></component>
     </div>

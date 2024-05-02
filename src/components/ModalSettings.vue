@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import { ref, type Ref } from 'vue'
+import { ref, watchEffect, type Ref } from 'vue'
 import { store } from '@/state/store'
 import { log } from '@/state/log'
-import { results } from '@/state/results'
-import { rollX } from '@/methods/dice'
+import IconGear from '@/icons/IconGear.vue'
 
-const active: Ref<Boolean> = ref(false)
+const active: Ref<boolean> = ref(false)
+
+watchEffect(() => {
+  if (store.setModalActive) store.setModalActive(active.value)
+})
 
 function clearData() {
   localStorage.removeItem('preferences')
@@ -15,7 +18,7 @@ function clearData() {
 
 <template>
   <button class="btn btn--offset btn--settings" @click="active = true">
-    <span class="btn__label">⚙︎</span>
+    <span class="btn__label"><IconGear class="w-2" /></span>
     <span class="btn__description">Settings</span>
   </button>
   <Teleport to="body">
@@ -67,7 +70,6 @@ function clearData() {
 .settings {
   flex-grow: 1;
   width: 100%;
-  padding-inline: 2rem;
   overflow-y: auto;
 }
 

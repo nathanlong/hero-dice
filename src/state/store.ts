@@ -1,24 +1,26 @@
 import { reactive } from 'vue'
 
 export interface Preferences {
-  theme?: string,
-  instructions?: string,
-  system: string,
-  dicePool: number,
-  useModifier?: boolean,
-  useDescription?: boolean,
-  useCrits?: boolean,
-  useSounds?: boolean,
-  useSystemSounds?: boolean,
-  preserveNumberDie?: boolean,
-  displayResults?: string,
-  merge?: Function,
+  theme?: string
+  instructions?: string
+  system: string
+  dicePool: number
+  useModifier?: boolean
+  useDescription?: boolean
+  useCrits?: boolean
+  useSounds?: boolean
+  useSystemSounds?: boolean
+  preserveNumberDie?: boolean
+  isModalActive?: boolean
+  displayResults?: string
+  setModalActive?: Function
+  merge?: Function
 }
 
-export const store: Preferences = reactive({
-  theme: "light",
-  instructions: "Default instructions",
-  system: "FreeformFig",
+export const store: Preferences = reactive<Preferences>({
+  theme: 'light',
+  instructions: 'Default instructions',
+  system: 'FreeformFig',
   dicePool: 4,
   useModifier: false,
   useDescription: false,
@@ -26,9 +28,14 @@ export const store: Preferences = reactive({
   useSounds: true,
   useSystemSounds: true,
   preserveNumberDie: false,
-  displayResults: "highest",
+  isModalActive: false,
+  displayResults: 'highest',
 
-  merge(newValues:object) {
+  setModalActive(state: boolean) {
+    this.isModalActive = state
+  },
+
+  merge(newValues: object) {
     Object.assign(this, newValues)
   }
 })

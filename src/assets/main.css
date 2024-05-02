@@ -15,32 +15,36 @@
     Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   /* start light theme variables */
   --light-text-color: #111;
-  --light-btn-background: linear-gradient(170deg, rgba(254, 254, 254, 1) 0%, rgba(249, 249, 249, 1) 100%);
+  --light-btn-background: linear-gradient(
+    170deg,
+    rgba(254, 254, 254, 1) 0%,
+    rgba(242, 242, 242, 1) 100%
+  );
   --btn-active-background: linear-gradient(
     135deg,
-    rgba(245, 245, 245, 1) 0%,
-    rgba(235, 235, 235, 1) 100%
+    rgba(240, 240, 240, 1) 0%,
+    rgba(225, 225, 225, 1) 100%
   );
   --btn-active-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.1), inset 0 5px 10px 0 rgba(0, 0, 0, 0.2);
   --light-btn-border-light: rgba(255, 255, 255, 0.9);
   --light-btn-border-dark: rgba(230, 230, 230, 0.9);
   --light-btn-active-border-light: rgba(0, 0, 0, 0.2);
-  --light-btn-label-shadow: rgba(255,255,255,0.5);
+  --light-btn-label-shadow: rgba(255, 255, 255, 0.5);
   --light-btn-description-color: #aaa;
   --light-btn-offset-color: #fff;
   --light-btn-offset-background: linear-gradient(
     170deg,
     rgba(230, 230, 232, 1) 0%,
-    rgba(220, 220, 222, 1) 100%
+    rgba(215, 215, 217, 1) 100%
   );
   --light-btn-offset-active-background: linear-gradient(
     135deg,
-    rgba(220, 220, 222, 1) 0%,
-    rgba(210, 210, 212, 1) 100%
+    rgba(210, 210, 212, 1) 0%,
+    rgba(195, 195, 197, 1) 100%
   );
-  --light-btn-offset-border-light: rgba(255, 255, 255, 0.05);
-  --light-btn-offset-border-dark: rgba(0, 0, 0, 0.1);
-  --light-modal-background: rgba(255,255,255, 0.7);
+  --light-btn-offset-border-light: rgba(245, 245, 247, 0.8);
+  --light-btn-offset-border-dark: rgba(200, 200, 202, 1);
+  --light-modal-background: rgba(255, 255, 255, 0.7);
   --light-result-background: #333333;
   --light-result-color: #ffffff;
   --light-result-border-start: #444444;
@@ -61,7 +65,7 @@
   --light-result-freeze-border-start: #ade8f4;
   --light-result-freeze-border-end: #ade8f4;
   --light-result-freeze-background-lower: #48cae4;
-  --light-log-background: whitesmoke;
+  --light-log-background: rgba(230, 230, 230, 1);
 }
 
 html,
@@ -98,7 +102,7 @@ input {
   border: 0;
 }
 
-input[type="number"] {
+input[type='number'] {
   border-radius: 0;
   background: var(--btn-background, var(--light-btn-background));
   color: var(--btn-color, var(--light-text-color));
@@ -152,7 +156,7 @@ header {
 .select-wrapper:after {
   display: block;
   content: '';
-background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960' style='fill:currentColor;'%3E%3Cpath d='M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z' /%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 -960 960 960' style='fill:currentColor;'%3E%3Cpath d='M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z' /%3E%3C/svg%3E");
   fill: currentColor;
   color: white;
   width: 1rem;
@@ -194,7 +198,7 @@ background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/200
 }
 
 .log__time {
-  color: rgba(0, 0, 0, 0.25);
+  color: var(--log-time-color, rgba(0, 0, 0, 0.25));
   font-size: 0.75em;
   flex-shrink: 0;
 }
@@ -229,9 +233,11 @@ background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/200
   border-bottom-color: var(--btn-border-dark, var(--light-btn-border-dark));
   border-radius: 0;
   transition:
-    box-shadow 100ms ease-out,
-    background 100ms ease-out,
-    opacity 100ms ease-out;
+    color 150ms ease-out,
+    box-shadow 150ms ease-out,
+    border-color 150ms ease-out,
+    background 150ms ease-out,
+    opacity 150ms ease-out;
 }
 
 .btn[disabled] {
@@ -252,7 +258,9 @@ background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/200
   font-weight: 900;
   font-size: 2.5rem;
   text-transform: uppercase;
-  text-shadow: 0 1px 0 var(--btn-label-shadow, var(--light-btn-label-shadow));
+  text-shadow:
+    0 1px 0 var(--btn-label-shadow, var(--light-btn-label-shadow)),
+    0 -1px 0 rgba(0, 0, 0, 0.2);
   line-height: 1;
 }
 
@@ -271,7 +279,10 @@ background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/200
 
 .btn--offset:active,
 .btn--offset.active {
-  --btn-active-background: var(--btn-offset-active-background, var(--light-btn-offset-active-background));
+  --btn-active-background: var(
+    --btn-offset-active-background,
+    var(--light-btn-offset-active-background)
+  );
 }
 
 .btn--settings,
@@ -335,7 +346,10 @@ background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/200
   --result-color: var(--result-fail-color, var(--light-result-fail-color));
   --result-border-start: var(--result-fail-border-start, var(--light-result-fail-border-start));
   --result-border-end: var(--result-fail-border-end, var(--light-result-fail-border-end));
-  --result-background-lower: var(--result-fail-background-lower, var(--light-result-fail-background-lower));
+  --result-background-lower: var(
+    --result-fail-background-lower,
+    var(--light-result-fail-background-lower)
+  );
   animation-name: shake;
   animation-duration: 200ms;
   animation-iteration-count: 3;
@@ -359,7 +373,10 @@ background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/200
   --result-color: var(--result-crit-color, var(--light-result-crit-color));
   --result-border-start: var(--result-crit-border-start, var(--light-result-crit-border-start));
   --result-border-end: var(--result-crit-border-end, var(--light-result-crit-border-end));
-  --result-background-lower: var(--result-crit-background-lower, var(--light-result-crit-background-lower));
+  --result-background-lower: var(
+    --result-crit-background-lower,
+    var(--light-result-crit-background-lower)
+  );
   animation-name: jump;
   animation-duration: 1200ms;
   animation-iteration-count: 1;
@@ -398,12 +415,19 @@ background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/200
   color: var(--result-fail-background, var(--light-result-fail-background));
 }
 
+.text-freeze {
+  color: var(--result-freeze-background, var(--light-result-freeze-background));
+}
+
 .freeze {
   --result-background: var(--result-freeze-background, var(--light-result-freeze-background));
   --result-color: var(--result-freeze-color, var(--light-result-freeze-color));
   --result-border-start: var(--result-freeze-border-start, var(--light-result-freeze-border-start));
   --result-border-end: var(--result-freeze-border-end, var(--light-result-freeze-border-end));
-  --result-background-lower: var(--result-freeze-background-lower, var(--light-result-freeze-background-lower));
+  --result-background-lower: var(
+    --result-freeze-background-lower,
+    var(--light-result-freeze-background-lower)
+  );
 }
 
 .modifier {
@@ -418,13 +442,6 @@ background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/200
   box-shadow: inset 0 0.125rem 0.5rem rgba(0, 0, 0, 0.4);
 }
 
-.settings__inner {
-  background: var(--btn-background, var(--light-btn-background));
-  border-radius: 1rem;
-  border: 1px solid var(--btn-border-dark, var(--light-btn-border-dark));
-  overflow: hidden;
-}
-
 @media (orientation: landscape) {
   .settings__inner {
     display: grid;
@@ -432,7 +449,7 @@ background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/200
   }
 
   .settings__item:nth-child(even) {
-    border-inline-start: 1px solid var(--btn-border-dark, var(--light-btn-border-dark));
+    /* border-inline-start: 1px solid var(--btn-border-light, var(--light-btn-border-dark)); */
   }
 }
 
@@ -440,8 +457,7 @@ background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/200
   display: flex;
   flex-direction: var(--settings-item-direction, column);
   justify-content: center;
-  padding: 2rem;
-  border-block-end: 1px solid var(--btn-border-dark, var(--light-btn-border-dark));
+  padding: 1.5rem;
 }
 
 .settings__item--inline {
@@ -472,4 +488,16 @@ background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/200
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+.icon {
+  width: 100%;
+}
+
+.w-1 {
+  width: 1rem;
+}
+
+.w-2 {
+  width: 2rem;
 }

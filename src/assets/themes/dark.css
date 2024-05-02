@@ -1,23 +1,34 @@
 .dark:root {
-  --background: #000;
+  --background: #101010;
   --text-color: #f0f0f0;
   --btn-color: #ddd;
   --btn-background: linear-gradient(170deg, rgba(50, 50, 50, 1) 0%, rgba(20, 20, 20, 1) 100%);
   --btn-active-background: linear-gradient(135deg, rgba(30, 30, 30, 1) 0%, rgba(3, 3, 3, 1) 100%);
   --btn-active-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.9), inset 0 5px 10px 0 rgba(0, 0, 0, 0.9);
   --btn-active-border-light: rgba(0, 0, 0, 1);
-  --btn-offset-background: linear-gradient(170deg, rgba(80, 80, 80, 1) 0%, rgba(60, 60, 60, 1) 100%);
-  --btn-offset-active-background: linear-gradient(135deg, rgba(70, 70, 70, 1) 0%, rgba(50, 50, 50, 1) 100%);
+  --btn-offset-background: linear-gradient(
+    170deg,
+    rgba(80, 80, 80, 1) 0%,
+    rgba(60, 60, 60, 1) 100%
+  );
+  --btn-offset-active-background: linear-gradient(
+    135deg,
+    rgba(60, 60, 60, 1) 0%,
+    rgba(40, 40, 40, 1) 100%
+  );
+  --btn-offset-border-dark: rgba(50, 50, 50, 0.9);
+  --btn-offset-border-light: rgba(90, 90, 90, 0.9);
   --btn-border-light: rgba(75, 75, 75, 0.5);
-  --btn-label-shadow: rgba(255,255,255,0.8);
-  --btn-border-dark: rgba(0,0,0,1);
-  --modal-background: rgba(0,0,0,.7);
+  --btn-label-shadow: rgba(255, 255, 255, 0.8);
+  --btn-border-dark: rgba(0, 0, 0, 1);
+  --modal-background: rgba(0, 0, 0, 0.7);
   --result-background: #f0f0f0;
   --result-color: #000;
   --result-border-start: #fff;
   --result-border-end: #fff;
   --result-background-lower: rgba(210, 210, 210, 1);
   --log-background: #202020;
+  --log-time-color: #666;
   --modifier-background: #444;
   color-scheme: dark;
 }

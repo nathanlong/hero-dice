@@ -5,6 +5,8 @@ import { results } from '@/state/results'
 import { rollX } from '@/methods/dice'
 import ModalMultiDice from '@/components/ModalMultiDice.vue'
 import ModalSettings from '@/components/ModalSettings.vue'
+import IconUp from '@/icons/IconUp.vue'
+import IconDown from '@/icons/IconDown.vue'
 
 // Settings
 const systemPrefs: Preferences = {
@@ -57,7 +59,7 @@ results.setDescription(rollDescription)
 
 // Control Ranges
 const diceDescriptions: Array<String> = ['ok', 'good', 'excellent', 'superhuman!']
-const diceRange: Array<number> = [4, 5, 6, 7, 8, 9]
+const diceRange: Array<number> = [5, 6, 7, 8, 9, 10]
 </script>
 
 <template>
@@ -72,8 +74,8 @@ const diceRange: Array<number> = [4, 5, 6, 7, 8, 9]
   <div class="options">
     <ModalMultiDice :range="diceRange" :immediateRoll="true" :maxResult="6" />
     <button class="btn btn--other" @click="toggleResultType">
-      <span v-if="store.displayResults === 'highest'" class="btn__label text-success">↑</span>
-      <span v-if="store.displayResults === 'lowest'" class="btn__label text-fail">↓</span>
+      <span v-if="store.displayResults === 'highest'" class="btn__label text-success"><IconUp class="w-2" /></span>
+      <span v-if="store.displayResults === 'lowest'" class="btn__label text-fail"><IconDown class="w-2" /></span>
       <span class="btn__description">
         {{ store.displayResults }}
       </span>

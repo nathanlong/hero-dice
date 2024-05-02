@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import { ref, type Ref } from 'vue'
+import { ref, watchEffect, type Ref } from 'vue'
+import { store } from '@/state/store'
 import { results } from '@/state/results'
 import { rollX } from '@/methods/dice'
+import IconPlus from '@/icons/IconPlus.vue'
+import IconMinus from '@/icons/IconMinus.vue'
+
 const props = defineProps({
   stepper: Boolean,
   immediateRoll: Boolean,
@@ -11,9 +15,13 @@ const props = defineProps({
   range: Array<number>
 })
 
-const maxResult: Ref<number> = ref(props.maxResult ?? 6);
-const useStepper: Ref<Boolean> = ref(props.stepper ?? false);
-const active: Ref<Boolean> = ref(false)
+const maxResult: Ref<number> = ref(props.maxResult ?? 6)
+const useStepper: Ref<boolean> = ref(props.stepper ?? false)
+const active: Ref<boolean> = ref(false)
+
+watchEffect(() => {
+  if (store.setModalActive) store.setModalActive(active.value)
+})
 
 function handleRoll(num: number, max: number) {
   if (props.immediateRoll) {
@@ -37,15 +45,23 @@ function handleTotalRoll() {
 
 <template>
   <div v-if="useStepper" class="stepper stepper--control">
-    <button class="btn btn--offset btn--stepper" @click="results.numberDie--" :disabled="results.numberDie <= 1">-</button>
+    <button
+      class="btn btn--offset btn--stepper"
+      @click="results.numberDie--"
+      :disabled="results.numberDie <= 1"
+    >
+      <IconMinus class="w-1" />
+    </button>
     <button class="btn btn--other" @click="active = true">
       <span class="btn__label">{{ results.numberDie }}</span>
       <span class="btn__description"># of Die</span>
     </button>
-    <button class="btn btn--offset btn--stepper" @click="results.numberDie++">+</button>
+    <button class="btn btn--offset btn--stepper" @click="results.numberDie++">
+      <IconPlus class="w-1" />
+    </button>
   </div>
   <button v-if="!useStepper" class="btn btn--other" @click="active = true">
-    <span class="btn__label">#</span>
+    <span class="btn__label"><IconPlus class="w-2" /></span>
     <span class="btn__description">Dice</span>
   </button>
   <Teleport to="body">
@@ -68,12 +84,29 @@ function handleTotalRoll() {
           </button>
         </div>
         <div v-if="!immediateRoll" class="stepper">
-          <button class="btn btn--offset btn--stepper" @click="results.numberDie--" :disabled="results.numberDie <= 1">-</button>
+          <button
+            class="btn btn--offset btn--stepper"
+            @click="results.numberDie--"
+            :disabled="results.numberDie <= 1"
+          >
+            <IconMinus class="w-1" />
+          </button>
           <label for="stepper-input" class="sr-only">Enter amount of dice</label>
-          <input id="stepper-input" class="stepper__input" type="number" v-model="results.numberDie" />
-          <button class="btn btn--offset btn--stepper" @click="results.numberDie++">+</button>
+          <input
+            id="stepper-input"
+            class="stepper__input"
+            type="number"
+            v-model="results.numberDie"
+          />
+          <button class="btn btn--offset btn--stepper" @click="results.numberDie++">
+            <IconPlus class="w-1" />
+          </button>
         </div>
-        <button v-if="!props.immediateRoll && props.maxResult" class="btn btn--results btn--roll" @click="handleTotalRoll">
+        <button
+          v-if="!props.immediateRoll && props.maxResult"
+          class="btn btn--results btn--roll"
+          @click="handleTotalRoll"
+        >
           Roll
         </button>
         <button class="btn btn--results btn--clear" @click="active = false">Close</button>

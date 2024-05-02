@@ -1,14 +1,22 @@
 <script setup lang="ts">
-import { ref, type Ref } from 'vue'
+import { ref, watchEffect, type Ref } from 'vue'
+import { store } from '@/state/store'
 import { results } from '@/state/results'
+import IconPlus from '@/icons/IconPlus.vue'
+import IconMinus from '@/icons/IconMinus.vue'
+
 const props = defineProps({
   stepper: Boolean,
   closeOnSelect: Boolean,
   range: Array<number>
 })
 
-const useStepper: Ref<Boolean> = ref(props.stepper ?? false)
-const active: Ref<Boolean> = ref(false)
+const useStepper: Ref<boolean> = ref(props.stepper ?? false)
+const active: Ref<boolean> = ref(false)
+
+watchEffect(() => {
+  if (store.setModalActive) store.setModalActive(active.value)
+})
 
 function handleMod(num: number) {
   if (props.closeOnSelect) {
@@ -22,12 +30,16 @@ function handleMod(num: number) {
 
 <template>
   <div v-if="useStepper" class="stepper stepper--control">
-    <button class="btn btn--offset btn--stepper" @click="results.modifier--">-</button>
+    <button class="btn btn--offset btn--stepper" @click="results.modifier--">
+      <IconMinus class="w-1" />
+    </button>
     <button class="btn btn--other" @click="active = true">
       <span class="btn__label">{{ results.modifier }}</span>
       <span class="btn__description">Modifier</span>
     </button>
-    <button class="btn btn--offset btn--stepper" @click="results.modifier++">+</button>
+    <button class="btn btn--offset btn--stepper" @click="results.modifier++">
+      <IconPlus class="w-1" />
+    </button>
   </div>
 
   <button v-if="!useStepper" class="btn btn--other" @click="active = true">
@@ -53,9 +65,13 @@ function handleMod(num: number) {
           </button>
         </div>
         <div class="stepper">
-          <button class="btn btn--offset btn--stepper" @click="results.modifier--">-</button>
+          <button class="btn btn--offset btn--stepper" @click="results.modifier--">
+            <IconMinus class="w-1" />
+          </button>
           <input class="stepper__input" type="number" v-model="results.modifier" />
-          <button class="btn btn--offset btn--stepper" @click="results.modifier++">+</button>
+          <button class="btn btn--offset btn--stepper" @click="results.modifier++">
+            <IconPlus class="w-1" />
+          </button>
         </div>
         <button class="btn btn--results btn--clear" @click="active = false">Close</button>
       </div>
@@ -64,7 +80,6 @@ function handleMod(num: number) {
 </template>
 
 <style scoped>
-
 .grid {
   width: 100%;
   display: grid;

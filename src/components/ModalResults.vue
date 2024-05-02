@@ -1,8 +1,16 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { computed, watchEffect, type ComputedRef } from 'vue'
 import { results } from '@/state/results'
 import { store } from '@/state/store'
 import { clearRoll, freezeIndex, reRoll } from '@/methods/dice'
+
+const active: ComputedRef<boolean> = computed(() => {
+  return results.roll.length > 0
+})
+
+watchEffect(() => {
+  if (store.setModalActive) store.setModalActive(active.value)
+})
 </script>
 
 <template>
@@ -21,7 +29,7 @@ import { clearRoll, freezeIndex, reRoll } from '@/methods/dice'
                 'critical-success': store.useCrits && result === results.maxResult
               }"
               class="result"
-              :style="{'--results-animation-delay': index * 50 + 'ms' }"
+              :style="{ '--results-animation-delay': index * 50 + 'ms' }"
               @click="freezeIndex(index)"
               ref="resultDie"
             >
@@ -46,7 +54,6 @@ import { clearRoll, freezeIndex, reRoll } from '@/methods/dice'
 </template>
 
 <style scoped>
-
 .results {
   display: flex;
   flex-direction: column;
