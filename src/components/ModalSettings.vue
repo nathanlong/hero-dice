@@ -32,6 +32,7 @@ function clearData() {
               <select v-model="store.theme" id="theme-setting" name="theme">
                 <option value="light">Light</option>
                 <option value="dark">Dark</option>
+                <option value="catppuccin">Catppuccin Mocha</option>
               </select>
             </div>
             <div class="settings__item">

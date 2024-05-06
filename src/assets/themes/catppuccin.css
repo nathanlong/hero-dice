@@ -1,0 +1,61 @@
+.catppuccin:root {
+  --background: hsl(240, 21%, 15%);
+  --text-color: hsl(226, 64%, 88%);
+  --btn-color: hsl(217, 92%, 76%);
+  --btn-background: linear-gradient(170deg, hsl(237, 16%, 23%) 0%, hsl(240, 21%, 15%) 100%);
+  --btn-active-background: linear-gradient(0deg, oklch(45% 0.16 44.28) 0%, oklch(21.62% 0.025 284.1) 100%);
+  --btn-border-light: hsla(234, 13%, 31%, 0.7);
+  --btn-border-dark: hsla(240, 23%, 9%, 0.7);
+  --btn-active-shadow: 0 0 1px 0 rgba(0, 0, 10, 0.7), inset 0 5px 10px 0 rgba(0, 0, 10, 0.7);
+  --btn-active-border-light: rgba(0, 0, 0, 1);
+  --btn-description-color: hsl(228, 17%, 64%);
+  --btn-offset-background: linear-gradient(170deg, hsl(233, 12%, 39%)
+ 0%, hsl(234, 13%, 31%) 100%);
+  --btn-offset-active-background: linear-gradient(
+    0deg,
+    hsl(237, 15%, 29%) 0%,
+    hsl(234, 19%, 21%) 100%
+  );
+  --btn-offset-active-background: linear-gradient(0deg, oklch(53% 0.16 44.28) 0%, oklch(40% 0.031 279.93) 100%);
+  --btn-offset-border-dark: hsla(240, 21%, 15%, 0.8);
+  --btn-offset-border-light: hsla(230, 13%, 55%, 0.5);
+  --btn-label-shadow: rgba(255, 255, 255, 0);
+  --btn-label-shadow-top: hsl(240, 23%, 9%, 0.5);
+  --modal-background: hsla(240, 23%, 9%, 0.8);
+  --result-background: hsl(10, 56%, 91%);
+  --result-color: hsl(240, 21%, 15%);
+  --result-border-start: hsl(10, 56%, 96%);
+  --result-border-end: hsl(10, 56%, 96%);
+  --result-background-lower: hsl(10, 56%, 80%);
+  --result-fail-background: hsl(343, 81%, 75%);
+  --result-fail-background-lower: hsl(343, 81%, 60%);
+  --result-fail-color: hsl(343, 81%, 15%);
+  --result-fail-border-start: hsl(343, 81%, 80%);
+  --result-fail-border-end: hsl(343, 81%, 80%);
+  --result-crit-background: hsl(115, 64%, 76%);
+  --result-crit-background-lower: hsl(115, 64%, 61%);
+  --result-crit-color: hsl(115, 64%, 16%);
+  --result-crit-border-start: hsl(115, 64%, 81%);
+  --result-crit-border-end: hsl(115, 64%, 81%);
+  --result-freeze-background: hsl(217, 92%, 76%);
+  --result-freeze-background-lower: hsl(217, 92%, 61%);
+  --result-freeze-color: hsl(217, 92%, 16%);
+  --result-freeze-border-start: hsl(217, 92%, 81%);
+  --result-freeze-border-end: hsl(217, 92%, 81%);
+  --log-background: hsl(240, 21%, 12%);
+  --log-time-color: hsl(234, 13%, 31%);
+  --modifier-background: radial-gradient(circle, hsl(170, 57%, 73%)
+ 0%, hsl(170, 57%, 53%) 100%);
+  --modifier-color: var(--result-color);
+  color-scheme: dark;
+}
+
+.catppuccin .btn:active,
+.catppuccin .btn.active,
+.catppuccin .btn:active .btn__label,
+.catppuccin .btn.active .btn__label,
+.catppuccin .btn:active .btn__description,
+.catppuccin .btn.active .btn__description {
+  color: hsl(23, 92%, 75%);
+  text-shadow: 0 -1px 0.5rem hsla(23, 92%, 75%, 1);
+}

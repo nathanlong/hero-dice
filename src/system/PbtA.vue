@@ -13,7 +13,7 @@ const systemPrefs: Preferences = {
   dicePool: 1,
   useModifier: true,
   useDescription: true,
-  useCrits: false,
+  useCrits: true,
   useSystemSounds: true,
   preserveNumberDie: false,
   displayResults: 'total'
@@ -76,7 +76,9 @@ const stepperRange: Array<number> = [-3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 1
       @click="results.setModifier(n)"
       :key="n"
     >
+    <span class="btn__label btn__label--small">
       {{ n }}
+    </span>
     </button>
   </div>
   <button v-for="n in store.dicePool" @click="rollX(2, 6)" :key="n" class="btn btn--dice">
@@ -124,14 +126,6 @@ const stepperRange: Array<number> = [-3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 1
   .stepper {
     height: 29dvh;
   }
-}
-
-.btn__label {
-  display: block;
-  font-weight: 900;
-  font-size: 2.5rem;
-  text-transform: uppercase;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 1);
 }
 
 .btn__description {

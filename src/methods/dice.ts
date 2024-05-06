@@ -55,21 +55,21 @@ function computeResults() {
     results.roll.reduce((a, b) => {
       return a + b
     }) + results.modifier
-  results.lowest = Math.min(...results.roll)
-  results.highest = Math.max(...results.roll)
+  results.lowest = Math.min(...results.roll) + results.modifier
+  results.highest = Math.max(...results.roll) + results.modifier
 
   switch (store.displayResults) {
     case 'total':
-      results.display = results.total + results.modifier
+      results.display = results.total
       break
     case 'highest':
-      results.display = results.highest + results.modifier
+      results.display = results.highest
       break
     case 'lowest':
-      results.display = results.lowest + results.modifier
+      results.display = results.lowest
       break;
     default:
-      results.display = results.total + results.modifier
+      results.display = results.total
   }
 
   log.results.unshift({

@@ -14,6 +14,7 @@ import BladesInTheDark from './system/BladesInTheDark.vue'
 const systems: any = { FreeformFig, BladesInTheDark, PbtA, D20System, RisusSystem }
 
 import ModalResults from './components/ModalResults.vue'
+import IconChevronDown from './icons/IconChevronDown.vue'
 
 // grab settings
 const STORAGE_KEY = 'preferences'
@@ -60,6 +61,7 @@ watchEffect(() => {
         <option value="RisusSystem">Risus</option>
         <option value="D20System">d20</option>
       </select>
+      <IconChevronDown class="select-wrapper__icon" />
     </div>
     <p class="instructions">{{ store.instructions }}</p>
   </header>

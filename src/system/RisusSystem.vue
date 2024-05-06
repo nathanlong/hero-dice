@@ -13,7 +13,7 @@ const systemPrefs: Preferences = {
   dicePool: 6,
   useModifier: false,
   useDescription: false,
-  useCrits: false,
+  useCrits: true,
   useSystemSounds: false,
   displayResults: 'total'
 }
