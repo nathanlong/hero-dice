@@ -33,6 +33,7 @@ function clearData() {
                 <option value="light">Light</option>
                 <option value="dark">Dark</option>
                 <option value="catppuccin">Catppuccin Mocha</option>
+                <option value="rose">Rosé Pine Dawn</option>
               </select>
             </div>
             <div class="settings__item">
@@ -56,12 +57,14 @@ function clearData() {
             <div class="settings__item">
               <label for="clear-data">Clear local data and preferences?</label>
               <button id="clear-data" class="btn btn--offset btn--clear" @click="clearData()">
-                Clear Data
+                <span>Clear Data</span>
               </button>
             </div>
           </div>
         </div>
-        <button class="btn btn--results btn--clear" @click="active = false">Close</button>
+        <button class="btn btn--results btn--clear" @click="active = false">
+          <span>Close</span>
+        </button>
       </div>
     </Transition>
   </Teleport>

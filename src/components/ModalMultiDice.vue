@@ -107,9 +107,11 @@ function handleTotalRoll() {
           class="btn btn--results btn--roll"
           @click="handleTotalRoll"
         >
-          Roll
+          <span>Roll</span>
         </button>
-        <button class="btn btn--results btn--clear" @click="active = false">Close</button>
+        <button class="btn btn--results btn--clear" @click="active = false">
+          <span>Close</span>
+        </button>
       </div>
     </Transition>
   </Teleport>
@@ -150,13 +152,14 @@ function handleTotalRoll() {
 }
 
 .btn--stepper {
-  width: 25%;
+  width: 45%;
   height: 100%;
 }
 
 .stepper__input {
   flex-grow: 1;
   height: 100%;
+  width: 100%;
   text-align: center;
 }
 

@@ -9,13 +9,10 @@
   --btn-active-shadow: 0 0 1px 0 rgba(0, 0, 10, 0.7), inset 0 5px 10px 0 rgba(0, 0, 10, 0.7);
   --btn-active-border-light: rgba(0, 0, 0, 1);
   --btn-description-color: hsl(228, 17%, 64%);
+  --btn-offset-color: var(--btn-color);
+  --btn-offset-description-color: var(--btn-description-color);
   --btn-offset-background: linear-gradient(170deg, hsl(233, 12%, 39%)
  0%, hsl(234, 13%, 31%) 100%);
-  --btn-offset-active-background: linear-gradient(
-    0deg,
-    hsl(237, 15%, 29%) 0%,
-    hsl(234, 19%, 21%) 100%
-  );
   --btn-offset-active-background: linear-gradient(0deg, oklch(53% 0.16 44.28) 0%, oklch(40% 0.031 279.93) 100%);
   --btn-offset-border-dark: hsla(240, 21%, 15%, 0.8);
   --btn-offset-border-light: hsla(230, 13%, 55%, 0.5);
@@ -43,6 +40,7 @@
   --result-freeze-border-start: hsl(217, 92%, 81%);
   --result-freeze-border-end: hsl(217, 92%, 81%);
   --log-background: hsl(240, 21%, 12%);
+  --log-border: var(--btn-border-dark);
   --log-time-color: hsl(234, 13%, 31%);
   --modifier-background: radial-gradient(circle, hsl(170, 57%, 73%)
  0%, hsl(170, 57%, 53%) 100%);

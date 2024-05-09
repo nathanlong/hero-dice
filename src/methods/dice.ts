@@ -12,7 +12,7 @@ export function roll(min: number, max: number) {
 }
 
 export function rollX(num: number, size: number) {
-  const numberDie = num === 0 ? 1 : num;
+  const numberDie = num === 0 ? 1 : num
   results.clearRoll()
   results.numberDie = num
   results.maxResult = size
@@ -67,7 +67,7 @@ function computeResults() {
       break
     case 'lowest':
       results.display = results.lowest
-      break;
+      break
     default:
       results.display = results.total
   }
@@ -89,6 +89,7 @@ export function freezeIndex(index: number) {
 }
 
 export function reRoll() {
+  results.reroll = true
   const newResults: Array<number> = []
   results.roll.forEach((result, index) => {
     if (results.frozenDie.includes(index)) {
@@ -102,4 +103,9 @@ export function reRoll() {
   results.clearComputed()
   computeResults()
   playRollSound(results.roll.length)
+
+  // is there a better way to retrigger the animation?
+  setTimeout(() => {
+    results.reroll = false
+  }, 1000)
 }

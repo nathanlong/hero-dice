@@ -190,7 +190,8 @@ header {
   width: 100%;
   justify-content: space-between;
   align-items: baseline;
-  border-top: 1px solid var(--btn-border-dark, var(--light-btn-border-dark));
+  color: var(--log-color, var(--text-color));
+  border-top: 1px solid var(--log-border, var(--light-btn-border-dark));
 }
 
 .log__time {
@@ -222,6 +223,7 @@ header {
   background: var(--btn-background, var(--light-btn-background));
   text-align: center;
   border: 1px solid;
+  position: relative;
   color: var(--btn-color, var(--light-text-color));
   border-top-color: var(--btn-border-light, var(--light-btn-border-light));
   border-left-color: var(--btn-border-light, var(--light-btn-border-light));
@@ -249,6 +251,19 @@ header {
   background: var(--btn-active-background, var(--light-btn-active-background));
 }
 
+.btn > span {
+  display: block;
+}
+
+.btn > * {
+  transition: transform 150ms ease-out;
+}
+
+.btn:active > *,
+.btn.active > * {
+  transform: translateY(3px);
+}
+
 .btn__label {
   display: block;
   font-weight: 900;
@@ -265,6 +280,7 @@ header {
 }
 
 .btn__description {
+  display: block;
   color: var(--btn-description-color, var(--light-btn-description-color));
   font-size: 0.8125rem;
   text-transform: uppercase;
@@ -274,7 +290,8 @@ header {
   --btn-background: var(--btn-offset-background, var(--light-btn-offset-background));
   --btn-border-light: var(--btn-offset-border-light, var(--light-btn-offset-border-light));
   --btn-border-dark: var(--btn-offset-border-dark, var(--light-btn-offset-border-dark));
-  --btn-description: var(--text-color, var(--light-text-color));
+  --btn-description-color: var(--btn-offset-description-color, var(--light-btn-description-color));
+  --btn-color: var(--btn-offset-color, var(--light-text-color));
 }
 
 .btn--offset:active,
@@ -353,7 +370,7 @@ header {
   animation-name: shake;
   animation-duration: 200ms;
   animation-iteration-count: 3;
-  animation-timing-function: linear;
+  animation-timing-function: ease-in;
 }
 
 @keyframes shake {
@@ -367,6 +384,44 @@ header {
     transform: translate(0, 0);
   }
 }
+
+.reroll {
+  animation: reroll;
+  animation-duration: 1000ms;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-out;
+}
+
+@keyframes reroll {
+  0% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-0.75rem);
+  }
+  55% {
+    transform: translateY(0.05rem);
+  }
+  65% {
+    transform: translateY(-0.20rem);
+  }
+  70% {
+    transform: translateY(0.05rem);
+  }
+  80% {
+    transform: translateY(-0.125rem);
+  }
+  85% {
+    transform: translateY(0);
+  }
+  95% {
+    transform: translateY(-0.0625rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 
 .critical-success {
   --result-background: var(--result-crit-background, var(--light-result-crit-background));

@@ -68,7 +68,7 @@ const stepperRange: Array<number> = [-3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 1
 </script>
 
 <template>
-  <div class="stepper">
+  <div class="stepper--grid">
     <button
       v-for="n in modSteps"
       class="btn btn--offset btn--stepper"
@@ -115,7 +115,7 @@ const stepperRange: Array<number> = [-3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 1
   text-transform: uppercase;
 }
 
-.stepper {
+.stepper--grid {
   height: 25dvh;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -123,7 +123,7 @@ const stepperRange: Array<number> = [-3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 1
 }
 
 @media (orientation: landscape) {
-  .stepper {
+  .stepper--grid {
     height: 29dvh;
   }
 }

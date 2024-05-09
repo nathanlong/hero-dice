@@ -13,12 +13,12 @@ export interface Results {
   average: number
   modifier: number
   description: string
+  reroll: boolean
   clearRoll: Function
   clearComputed: Function
   toggleFreeze: Function
   setModifier: Function
   setDescription: Function
-  systemSound: HTMLAudioElement | false
 }
 
 export const results: Results = reactive({
@@ -33,7 +33,7 @@ export const results: Results = reactive({
   average: 0,
   modifier: 0,
   description: '',
-  systemSound: new Audio(''),
+  reroll: false,
 
   clearRoll() {
     this.roll = []

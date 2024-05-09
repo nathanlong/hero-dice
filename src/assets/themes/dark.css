@@ -6,6 +6,7 @@
   --btn-active-background: linear-gradient(135deg, rgba(30, 30, 30, 1) 0%, rgba(3, 3, 3, 1) 100%);
   --btn-active-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.9), inset 0 5px 10px 0 rgba(0, 0, 0, 0.9);
   --btn-active-border-light: rgba(0, 0, 0, 1);
+  --btn-offset-color: #fff;
   --btn-offset-background: linear-gradient(
     170deg,
     rgba(80, 80, 80, 1) 0%,
@@ -28,6 +29,7 @@
   --result-border-end: #fff;
   --result-background-lower: rgba(210, 210, 210, 1);
   --log-background: #202020;
+  --log-border: var(--btn-border-dark);
   --log-time-color: #666;
   --modifier-background: #444;
   color-scheme: dark;

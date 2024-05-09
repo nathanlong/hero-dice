@@ -19,14 +19,16 @@ watchEffect(() => {
       <div class="modal" v-if="results.roll.length > 0" @keyup.esc="clearRoll">
         <p class="directions">Tap a die to freeze it for rerolling.</p>
         <div class="results">
-          <div class="results-wrapper">
+          <div class="results-wrapper" :class="{
+            'reroll': results.reroll
+            }">
             <button
               v-for="(result, index) in results.roll"
               :key="index"
               :class="{
                 freeze: results.frozenDie.includes(index),
                 'critical-fail': store.useCrits && result === 1,
-                'critical-success': store.useCrits && result === results.maxResult
+                'critical-success': store.useCrits && result === results.maxResult,
               }"
               class="result"
               :style="{ '--results-animation-delay': index * 50 + 'ms' }"
@@ -46,8 +48,8 @@ watchEffect(() => {
           ></div>
         </div>
 
-        <button class="btn btn--results btn-reroll" @click="reRoll">Reroll</button>
-        <button class="btn btn--results btn--clear" @click="clearRoll">Clear</button>
+        <button class="btn btn--results btn--reroll" @click="reRoll"><span>Reroll</span></button>
+        <button class="btn btn--results btn--clear" @click="clearRoll"><span>Clear</span></button>
       </div>
     </Transition>
   </Teleport>
