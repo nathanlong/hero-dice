@@ -39,7 +39,7 @@ const rollDescription: ComputedRef<string> = computed(() => {
   } else if (results.highest === 6) {
     description = 'Full Success'
     return description
-  } else if (results.total >= 4) {
+  } else if (results.highest >= 4) {
     description = 'Partial Success'
     return description
   } else {
@@ -65,9 +65,9 @@ watchEffect(() => {
 
   if (results.highest === 6) {
     playSound(success)
-  } else if (results.total >= 4) {
+  } else if (results.highest >= 4) {
     playSound(mixed)
-  } else if (results.total >= 1) {
+  } else if (results.highest > 0) {
     playSound(fail)
   }
 })

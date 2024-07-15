@@ -37,6 +37,7 @@ function getMediaPreference() {
 }
 
 const userTheme = ref<string>(LOCAL_PREFS.value.theme || getMediaPreference())
+let startTime = new Date()
 
 onMounted(() => {
   store.theme = userTheme.value
@@ -79,6 +80,10 @@ watchEffect(() => {
           ><span> = {{ result.display }}</span>
         </p>
         <p class="log__time">{{ result.time }}</p>
+      </div>
+      <div class="log__results">
+        <p>Session Start →</p>
+        <p class="log__time">{{ startTime.toLocaleTimeString('en-US') }}</p>
       </div>
     </aside>
   </main>

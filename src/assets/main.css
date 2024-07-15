@@ -136,13 +136,15 @@ header {
   height: 100%;
 }
 
-.system-select {
+.system-select, .select-wrapper select {
   display: flex;
   border: 0;
   border-radius: 0;
   height: 100%;
+  width: 100%;
   padding-inline-start: 0.5rem;
   padding-inline-end: 1.5rem;
+  padding-block: 0.5rem;
   appearance: none;
   -webkit-appearance: none;
   position: relative;

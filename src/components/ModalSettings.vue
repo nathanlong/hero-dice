@@ -3,6 +3,7 @@ import { ref, watchEffect, type Ref } from 'vue'
 import { store } from '@/state/store'
 import { log } from '@/state/log'
 import IconGear from '@/icons/IconGear.vue'
+import IconChevronDown from '@/icons/IconChevronDown.vue'
 
 const active: Ref<boolean> = ref(false)
 
@@ -29,22 +30,28 @@ function clearData() {
           <div class="settings__inner">
             <div class="settings__item">
               <label for="theme-setting">Theme</label>
-              <select v-model="store.theme" id="theme-setting" name="theme">
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
-                <option value="catppuccin">Catppuccin Mocha</option>
-                <option value="rose">Rosé Pine Dawn</option>
-              </select>
+              <div class="select-wrapper">
+                <select v-model="store.theme" id="theme-setting" name="theme">
+                  <option value="light">Light</option>
+                  <option value="dark">Dark</option>
+                  <option value="catppuccin">Catppuccin Mocha</option>
+                  <option value="rose">Rosé Pine Dawn</option>
+                </select>
+                <IconChevronDown class="select-wrapper__icon" />
+              </div>
             </div>
             <div class="settings__item">
               <label for="system-setting">System</label>
-              <select v-model="store.system" id="system-setting" name="system">
-                <option value="FreeformFig">Freeform Universal / FIG</option>
-                <option value="BladesInTheDark">Blades in the Dark (BitD)</option>
-                <option value="PbtA">Powered by the Apocalpse (PbtA)</option>
-                <option value="RisusSystem">Risus</option>
-                <option value="D20System">d20 (D&D, and many others)</option>
-              </select>
+              <div class="select-wrapper">
+                <select v-model="store.system" id="system-setting" name="system">
+                  <option value="FreeformFig">Freeform Universal / FIG</option>
+                  <option value="BladesInTheDark">Blades in the Dark (BitD)</option>
+                  <option value="PbtA">Powered by the Apocalpse (PbtA)</option>
+                  <option value="RisusSystem">Risus</option>
+                  <option value="D20System">d20 (D&D, and many others)</option>
+                </select>
+                <IconChevronDown class="select-wrapper__icon" />
+              </div>
             </div>
             <div class="settings__item settings__item--inline">
               <label for="sound-setting">Play Dice Sounds?</label>
