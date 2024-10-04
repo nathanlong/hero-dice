@@ -11,7 +11,7 @@ import IconEquals from '@/icons/IconEquals.vue'
 import IconClose from '@/icons/IconClose.vue'
 
 const systemPrefs: Preferences = {
-  system: 'D20System',
+  system: 'd20',
   instructions: 'Set amount, modifier, then type',
   dicePool: 6,
   useModifier: true,

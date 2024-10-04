@@ -10,7 +10,7 @@ import IconDown from '@/icons/IconDown.vue'
 
 // Settings
 const systemPrefs: Preferences = {
-  system: 'FreeformFig',
+  system: 'ffu',
   instructions: 'Choose how many dice to roll',
   dicePool: 4,
   useModifier: false,

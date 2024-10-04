@@ -1,15 +1,22 @@
 <script setup lang="ts">
 import { ref, watchEffect, type Ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { store } from '@/state/store'
 import { log } from '@/state/log'
 import IconGear from '@/icons/IconGear.vue'
 import IconChevronDown from '@/icons/IconChevronDown.vue'
 
+const router = useRouter()
 const active: Ref<boolean> = ref(false)
 
 watchEffect(() => {
   if (store.setModalActive) store.setModalActive(active.value)
 })
+
+function changeSystem(e: Event) {
+  const newSystem = e.currentTarget as HTMLSelectElement
+  router.push('/hero-dice/' + newSystem.value)
+}
 
 function clearData() {
   localStorage.removeItem('preferences')
@@ -43,12 +50,12 @@ function clearData() {
             <div class="settings__item">
               <label for="system-setting">System</label>
               <div class="select-wrapper">
-                <select v-model="store.system" id="system-setting" name="system">
-                  <option value="FreeformFig">Freeform Universal / FIG</option>
-                  <option value="BladesInTheDark">Blades in the Dark (BitD)</option>
-                  <option value="PbtA">Powered by the Apocalpse (PbtA)</option>
-                  <option value="RisusSystem">Risus</option>
-                  <option value="D20System">d20 (D&D, and many others)</option>
+                <select :value="store.system" @change="changeSystem" id="system-setting" name="system">
+                  <option value="d20">d20 (D&D, and many others)</option>
+                  <option value="ffu">Freeform Universal / FIG</option>
+                  <option value="bitd">Blades in the Dark (BitD)</option>
+                  <option value="pbta">Powered by the Apocalpse (PbtA)</option>
+                  <option value="risus">Risus</option>
                 </select>
                 <IconChevronDown class="select-wrapper__icon" />
               </div>

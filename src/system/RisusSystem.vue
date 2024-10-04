@@ -8,7 +8,7 @@ import ModalSettings from '@/components/ModalSettings.vue'
 
 // Settings
 const systemPrefs: Preferences = {
-  system: 'RisusSystem',
+  system: 'risus',
   instructions: 'Choose how many dice to roll',
   dicePool: 6,
   useModifier: false,

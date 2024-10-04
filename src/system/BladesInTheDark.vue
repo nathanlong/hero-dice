@@ -8,7 +8,7 @@ import ModalSettings from '@/components/ModalSettings.vue'
 
 // Settings
 const systemPrefs: Preferences = {
-  system: 'BladesInTheDark',
+  system: 'bitd',
   instructions: 'Choose how many dice to roll',
   dicePool: 4,
   useModifier: false,

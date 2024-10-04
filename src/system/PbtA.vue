@@ -8,7 +8,7 @@ import ModalSettings from '@/components/ModalSettings.vue'
 
 // Settings
 const systemPrefs: Preferences = {
-  system: 'PbtA',
+  system: 'pbta',
   instructions: 'Set modifier then roll',
   dicePool: 1,
   useModifier: true,
