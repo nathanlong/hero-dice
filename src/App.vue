@@ -37,7 +37,7 @@ let startTime = new Date()
 
 function changeSystem(e: Event) {
   const newSystem = e.currentTarget as HTMLSelectElement
-  router.push('/hero-dice/' + newSystem.value)
+  router.push('/' + newSystem.value)
 }
 
 onMounted(() => {

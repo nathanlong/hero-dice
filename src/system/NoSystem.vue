@@ -5,9 +5,9 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 if (store.system !== '') {
-  router.push('/hero-dice/' + store.system)
+  router.push('/' + store.system)
 } else {
-  router.push('/hero-dice/d20')
+  router.push('/d20')
 }
 </script>
 

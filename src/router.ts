@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 
 import NoSystem from './system/NoSystem.vue'
 import FreeformFig from './system/FreeformFig.vue'
@@ -8,17 +8,18 @@ import RisusSystem from './system/RisusSystem.vue'
 import BladesInTheDark from './system/BladesInTheDark.vue'
 
 const routes = [
-  { path: '/hero-dice/', component: NoSystem },
-  { path: '/hero-dice/d20', component: D20System },
-  { path: '/hero-dice/ffu', component: FreeformFig },
-  { path: '/hero-dice/pbta', component: PbtA },
-  { path: '/hero-dice/risus', component: RisusSystem },
-  { path: '/hero-dice/bitd', component: BladesInTheDark },
+  { path: '/', component: NoSystem },
+  { path: '/d20', component: D20System },
+  { path: '/ffu', component: FreeformFig },
+  { path: '/pbta', component: PbtA },
+  { path: '/risus', component: RisusSystem },
+  { path: '/bitd', component: BladesInTheDark }
 ]
 
+// NOTE: Github Pages doesn't allow proper createWebHistory routing, so use hashes
 const router = createRouter({
-  history: createWebHistory(),
-  routes,
+  history: createWebHashHistory(),
+  routes
 })
 
 export default router
