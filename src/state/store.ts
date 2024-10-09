@@ -21,7 +21,7 @@ export interface Preferences {
 export const store: Preferences = reactive<Preferences>({
   theme: 'light',
   instructions: 'Default instructions',
-  system: 'FreeformFig',
+  system: '',
   dicePool: 4,
   useModifier: false,
   useDescription: false,

@@ -9,11 +9,11 @@ It's intended to be:
 * Provide simple audio feedback for use at the table (prevents fudging because you can hear the results of some systems)
 * Customizable with several color scheme options
 * Support several systems:
-    * Freeform Universal / FIG
-    * Risus
+    * D20 systems (D&D, OSE, Worlds Without Number, and many others)
     * Blades in the Dark
+    * Freeform Universal / FIG
     * Powerered by the Apocalypse systems
-    * D20 systems (D&D, Worlds Without Number, and many others)
+    * Risus
 
 ## Recommended IDE Setup
 
