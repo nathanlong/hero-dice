@@ -11,6 +11,7 @@ const active: ComputedRef<boolean> = computed(() => {
 watchEffect(() => {
   if (store.setModalActive) store.setModalActive(active.value)
 })
+
 </script>
 
 <template>
@@ -19,16 +20,19 @@ watchEffect(() => {
       <div class="modal" v-if="results.roll.length > 0" @keyup.esc="clearRoll">
         <p class="directions">Tap a die to freeze it for rerolling.</p>
         <div class="results">
-          <div class="results-wrapper" :class="{
-            'reroll': results.reroll
-            }">
+          <div
+            class="results-wrapper"
+            :class="{
+              reroll: results.reroll
+            }"
+          >
             <button
               v-for="(result, index) in results.roll"
               :key="index"
               :class="{
                 freeze: results.frozenDie.includes(index),
-                'critical-fail': store.useCrits && result === 1,
-                'critical-success': store.useCrits && result === results.maxResult,
+                'critical-fail': store.useCrits && result === (store.rollType === 'over' ? 1 : results.maxResult),
+                'critical-success': store.useCrits && result === (store.rollType === 'over' ? results.maxResult : 1)
               }"
               class="result"
               :style="{ '--results-animation-delay': index * 50 + 'ms' }"

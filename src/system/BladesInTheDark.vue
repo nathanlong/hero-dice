@@ -16,7 +16,8 @@ const systemPrefs: Preferences = {
   useCrits: true,
   useSystemSounds: true,
   preserveNumberDie: false,
-  displayResults: 'highest'
+  displayResults: 'highest',
+  rollType: 'over'
 }
 
 if (store.merge) store.merge(systemPrefs)

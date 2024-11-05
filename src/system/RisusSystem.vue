@@ -15,7 +15,8 @@ const systemPrefs: Preferences = {
   useDescription: false,
   useCrits: true,
   useSystemSounds: false,
-  displayResults: 'total'
+  displayResults: 'total',
+  rollType: 'over'
 }
 
 if (store.merge) store.merge(systemPrefs)

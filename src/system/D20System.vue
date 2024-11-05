@@ -9,6 +9,8 @@ import IconDown from '@/icons/IconDown.vue'
 import IconUp from '@/icons/IconUp.vue'
 import IconEquals from '@/icons/IconEquals.vue'
 import IconClose from '@/icons/IconClose.vue'
+import IconOver from '@/icons/IconOver.vue'
+import IconUnder from '@/icons/IconUnder.vue'
 
 const systemPrefs: Preferences = {
   system: 'd20',
@@ -19,7 +21,8 @@ const systemPrefs: Preferences = {
   useCrits: true,
   useSystemSounds: false,
   preserveNumberDie: true,
-  displayResults: 'total'
+  displayResults: 'total',
+  rollType: 'over'
 }
 
 if (store.merge) store.merge(systemPrefs)
@@ -31,6 +34,14 @@ function toggleResultType() {
     store.displayResults = 'total'
   } else if (store.displayResults === 'total') {
     store.displayResults = 'highest'
+  }
+}
+
+function toggleRollType() {
+  if (store.rollType === 'over') {
+    store.rollType = 'under'
+  } else {
+    store.rollType = 'over'
   }
 }
 
@@ -71,9 +82,15 @@ const modRange: Array<number> = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 1
   </div>
 
   <div class="options">
-    <button class="btn btn--other" @click="(results.numberDie = 1), (results.modifier = 0)">
+    <button class="btn btn--offset btn--settings" @click="(results.numberDie = 1), (results.modifier = 0)">
       <span class="btn__label"><IconClose class="w-2" /></span>
       <span class="btn__description">Clear</span>
+    </button>
+
+    <button class="btn btn--other" @click="toggleRollType">
+      <span v-if="store.rollType === 'over'" class="btn__label"><IconOver class="w-2 text-freeze" /></span>
+      <span v-if="store.rollType === 'under'" class="btn__label"><IconUnder class="w-2 text-success" /></span>
+      <span class="btn__description">Roll {{ store.rollType }}</span>
     </button>
 
     <button class="btn btn--other" @click="toggleResultType">
