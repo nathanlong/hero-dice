@@ -16,6 +16,7 @@ export interface Preferences {
   displayResults?: string
   setModalActive?: Function
   merge?: Function
+  rollType: string
 }
 
 export const store: Preferences = reactive<Preferences>({
@@ -32,6 +33,7 @@ export const store: Preferences = reactive<Preferences>({
   preserveNumberDie: false,
   isModalActive: false,
   displayResults: 'highest',
+  rollType: 'over',
 
   setModalActive(state: boolean) {
     this.isModalActive = state
