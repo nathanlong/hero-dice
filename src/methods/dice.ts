@@ -90,12 +90,11 @@ export function freezeIndex(index: number) {
 
 export function reRoll() {
   results.reroll = true
-  const newResults: Array<number> = []
-  results.roll.forEach((result, index) => {
+  const newResults: Array<number> = results.roll.map((result, index) => {
     if (results.frozenDie.includes(index)) {
-      newResults[index] = results.roll[index]
+      return result  // Use the parameter instead of results.roll[index] to ensure a number
     } else {
-      newResults[index] = roll(1, results.maxResult)
+      return roll(1, results.maxResult)
     }
   })
 
